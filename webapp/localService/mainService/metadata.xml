@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="sapbyd">
+            <EntityType xmlns:sap="http://www.sap.com/Protocols/SAPData" Name="RPZ3A90C9E0326509CA61E521QueryResult" sap:semantics="aggregate" sap:label="Copy of Weekly_Activity_Report">
+                <Key>
+                    <PropertyRef Name="ID" />
+                </Key>
+                <Property Name="CAPA_DOC_UUID" Type="Edm.String" Nullable="true" MaxLength="35" sap:label="Visit ID" sap:aggregation-role="dimension" sap:filterable="true" sap:filter-restriction="multi-value" sap:text="TAPA_DOC_UUID" />
+                <Property Name="CAPA_PTY_MAINACTIVITYPTY" Type="Edm.String" Nullable="true" MaxLength="10" sap:label="Account ID" sap:aggregation-role="dimension" sap:filterable="true" sap:filter-restriction="multi-value" sap:text="TAPA_PTY_MAINACTIVITYPTY" />
+                <Property Name="CAPA_PTY_MAINEMPLRESPPTY_N" Type="Edm.String" Nullable="true" MaxLength="20" sap:label="Employee Responsible For Visit ID" sap:aggregation-role="dimension" sap:filterable="true" sap:filter-restriction="multi-value" sap:text="TAPA_PTY_MAINEMPLRESPPTY_N" />
+                <Property Name="CDOC_CREATIONDT" Type="Edm.DateTime" Nullable="true" sap:label="Created On ID" sap:aggregation-role="dimension" sap:filterable="true" />
+                <Property Name="CDOC_NOTES" Type="Edm.String" Nullable="true" sap:label="Notes ID" sap:aggregation-role="dimension" sap:filterable="true" />
+                <Property Name="CDOC_REP_YR_WEEK" Type="Edm.String" Nullable="true" MaxLength="8" sap:label="Week/Calendar Year ID" sap:aggregation-role="dimension" sap:filterable="true" sap:text="TDOC_REP_YR_WEEK" />
+                <Property Name="CDOC_VISIT_TYPE" Type="Edm.String" Nullable="true" MaxLength="4" sap:label="Visit Type ID" sap:aggregation-role="dimension" sap:filterable="true" sap:text="TDOC_VISIT_TYPE" />
+                <Property Name="CPRJTN_ROLE_CODE" Type="Edm.String" Nullable="true" MaxLength="6" sap:label="Role ID" sap:aggregation-role="dimension" sap:filterable="true" sap:text="TPRJTN_ROLE_CODE" />
+                <Property Name="CQRE_ELE_ORDINALNUMBERVALUE" Type="Edm.Int64" Nullable="true" sap:label="Question Number ID" sap:aggregation-role="dimension" sap:filterable="true" />
+                <Property Name="CQRE_ROT_ID" Type="Edm.String" Nullable="true" MaxLength="35" sap:label="Survey ID ID" sap:aggregation-role="dimension" sap:filterable="true" />
+                <Property Name="CQRE_VAL_ATTACHMENT_UUID" Type="Edm.String" Nullable="true" MaxLength="255" sap:label="Survey Valuation Attachment ID" sap:aggregation-role="dimension" sap:filterable="true" sap:filter-restriction="multi-value" sap:text="TQRE_VAL_ATTACHMENT_UUID" />
+                <Property Name="Cs1ANs7E7ABC35053C425" Type="Edm.String" Nullable="true" MaxLength="30" sap:label="Account Type ID" sap:aggregation-role="dimension" sap:filterable="true" sap:text="Ts1ANs7E7ABC35053C425" />
+                <Property Name="Cs1ANsBFEACD52FCDD795" Type="Edm.String" Nullable="true" MaxLength="256" sap:label="Activity Details ID" sap:aggregation-role="dimension" sap:filterable="true" sap:text="Ts1ANsBFEACD52FCDD795" />
+                <Property Name="Cs1ANsDFE1FAA8A417519" Type="Edm.String" Nullable="true" MaxLength="256" sap:label="Main Product Categories ID" sap:aggregation-role="dimension" sap:filterable="true" sap:text="Ts1ANsDFE1FAA8A417519" />
+                <Property Name="Cs1ANsEE730D1E08E7B3B" Type="Edm.String" Nullable="true" MaxLength="30" sap:label="Purpose ID" sap:aggregation-role="dimension" sap:filterable="true" sap:text="Ts1ANsEE730D1E08E7B3B" />
+                <Property Name="FCZ0COUNT" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Counter Formatted" />
+                <Property Name="KCZ0COUNT" Type="Edm.Int32" Nullable="true" sap:label="Counter" sap:filterable="true" sap:text="FCZ0COUNT" sap:aggregation-role="measure" />
+                <Property Name="TAPA_DOC_UUID" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Visit Text" />
+                <Property Name="TAPA_PTY_MAINACTIVITYPTY" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Account Text" />
+                <Property Name="TAPA_PTY_MAINEMPLRESPPTY_N" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Employee Responsible For Visit Text" />
+                <Property Name="TDOC_REP_YR_WEEK" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Week/Calendar Year Text" />
+                <Property Name="TDOC_VISIT_TYPE" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Visit Type Text" />
+                <Property Name="TPRJTN_ROLE_CODE" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Role Text" />
+                <Property Name="TQRE_VAL_ATTACHMENT_UUID" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Survey Valuation Attachment Text" />
+                <Property Name="Ts1ANs7E7ABC35053C425" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Account Type Text" />
+                <Property Name="Ts1ANsBFEACD52FCDD795" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Activity Details Text" />
+                <Property Name="Ts1ANsDFE1FAA8A417519" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Main Product Categories Text" />
+                <Property Name="Ts1ANsEE730D1E08E7B3B" Type="Edm.String" Nullable="true" MaxLength="60" sap:label="Purpose Text" />
+                <Property Name="TotaledProperties" Type="Edm.String" sap:aggregation-role="totaled-properties-list" />
+                <Property Name="ID" Type="Edm.String" />
+            </EntityType>
+            <EntityContainer Name="ana_businessanalytics_analytics" m:IsDefaultEntityContainer="true">
+                <EntitySet
+                    xmlns:sap="http://www.sap.com/Protocols/SAPData"
+                    Name="RPZ3A90C9E0326509CA61E521QueryResults"
+                    EntityType="sapbyd.RPZ3A90C9E0326509CA61E521QueryResult"
+                    sap:creatable="false"
+                    sap:deletable="false"
+                    sap:updatable="false"
+                    sap:searchable="false"
+                    sap:is-thing-type="false"
+                    sap:semantics="aggregate"
+                    sap:label="Copy of Weekly_Activity_Report"
+                />
+                <FunctionImport Name="Logoff" ReturnType="Edm.String" m:HttpMethod="POST" />
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

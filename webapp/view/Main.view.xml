@@ -1,0 +1,28 @@
+<mvc:View controllerName="activity.weekly.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+            <Table
+                id="WeeklyActivityTable"
+                items="{
+                    path: '/RPZ3A90C9E0326509CA61E521QueryResults',
+                    parameters: { $top: 1000 }
+                }"
+                growing="true">
+                <columns>
+                    <Column><Text text="Activity"/></Column>
+                    <Column><Text text="Hours"/></Column>
+                    <Column><Text text="Owner"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{CDOC_CREATIONDT}"/>
+                            <Text text="{CDC_NOTES}"/>
+                            <Text text="{TAPA_DOC_UUID}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+    </Page>
+</mvc:View>
