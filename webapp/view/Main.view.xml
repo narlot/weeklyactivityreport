@@ -8,6 +8,108 @@
         <Table id="WeeklyActivityTable"
             inset="false"
             items="{
+                path: 'WeeklyActivity>/',
+                sorter: {
+                    path: 'TDOC_REP_YR_WEEK'
+                }
+            }"
+            growing="true"
+            growingScrollToLoad="false"
+            growingThreshold="10"
+            width="100%">
+            <headerToolbar>
+                <OverflowToolbar>
+                    <content/>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column
+                    width="12em">
+                    <Text text="Week/Calendar Year" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Main Product Categories" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                    <Text text="Visit" />
+                </Column>
+                <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    hAlign="Center">
+                    <Text text="Employee Responsible For Visit" />
+                </Column>
+                <Column
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Account" />
+                </Column>
+                <Column
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Notes" />
+                </Column>
+                <Column
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Image" />
+                </Column>
+                <Column
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Activity Details" />
+                </Column>
+                <Column
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Purpose" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <Text text="{WeeklyActivity>TDOC_REP_YR_WEEK}"/>
+                        <Text text="{WeeklyActivity>Ts1ANsDFE1FAA8A417519}"/>
+                        <Text text="{WeeklyActivity>TAPA_DOC_UUID}"/>
+                        <Text text="{WeeklyActivity>TAPA_PTY_MAINEMPLRESPP}"/>
+                        <Text text="{WeeklyActivity>TAPA_PTY_MAINACTIVITYP}"/>
+                        <Text text="{WeeklyActivity>CDOC_NOTES}"/>
+                        <Image
+                            src="{WeeklyActivity>DocumentLink}"
+                            width="50px"
+                            height="50px"
+                            press="onImagePress"
+                            tooltip="Click to view full image"
+                        />
+                        <Text text="{WeeklyActivity>Ts1ANsBFEACD52FCDD795}"/>
+                        <Text text="{WeeklyActivity>Ts1ANsEE730D1E08E7B3B}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>
+
+<!-- <mvc:View
+	controllerName="activity.weekly.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:p="sap.m.plugins"
+	xmlns="sap.m">
+    <Page id="WeeklyActivityID">
+        <Table id="WeeklyActivityTable"
+            inset="false"
+            items="{
                 path: '/RPZ3A90C9E0326509CA61E521QueryResults',
                 sorter: {
                     path: 'TDOC_REP_YR_WEEK'
@@ -33,31 +135,45 @@
                     <Text text="Main Product Categories" />
                 </Column>
                 <Column
-                    minScreenWidth="Desktop"
+                    minScreenWidth="Tablet"
                     demandPopin="true"
-                    hAlign="End">
+                    hAlign="Center">
                     <Text text="Visit" />
                 </Column>
                 <Column
-                    minScreenWidth="Desktop"
+                    minScreenWidth="Tablet"
                     demandPopin="true"
                     hAlign="Center">
                     <Text text="Employee Responsible For Visit" />
                 </Column>
                 <Column
-                    hAlign="End">
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
                     <Text text="Account" />
                 </Column>
                 <Column
-                    hAlign="End">
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
                     <Text text="Notes" />
                 </Column>
                 <Column
-                    hAlign="End">
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="Image" />
+                </Column>
+                <Column
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
                     <Text text="Activity Details" />
                 </Column>
                 <Column
-                    hAlign="End">
+                    hAlign="Center"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
                     <Text text="Purpose" />
                 </Column>
             </columns>
@@ -70,6 +186,13 @@
                         <Text text="{TAPA_PTY_MAINEMPLRESPP}"/>
                         <Text text="{TAPA_PTY_MAINACTIVITYP}"/>
                         <Text text="{CDOC_NOTES}"/>
+                        <Image
+                            src="{ImageModel>/DocumentLink}"
+                            width="50px"
+                            height="50px"
+                            press="onImagePress"
+                            tooltip="Click to view full image"
+                        />
                         <Text text="{Ts1ANsBFEACD52FCDD795}"/>
                         <Text text="{Ts1ANsEE730D1E08E7B3B}"/>
                     </cells>
@@ -77,7 +200,7 @@
             </items>
         </Table>
     </Page>
-</mvc:View>
+</mvc:View> -->
 
 
 <!-- <mvc:View controllerName="activity.weekly.controller.Main"
