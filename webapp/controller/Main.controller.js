@@ -8,6 +8,29 @@ sap.ui.define([
         onInit() {
             const oModel = this.getOwnerComponent().getModel();
             oModel.setUseBatch(false);
+            const sPath = "/RPZ3A90C9E0326509CA61E521QueryResults";
+            const mParameters = {
+                urlParameters: {
+                    "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,CQRE_VAL_ATTACHMENT_UUID,TAPA_DOC_UUID,TDOC_REP_YR_WEEK"
+                },
+                success: function (oData) {
+                    // oData.results contains only the selected fields
+                    const oCollection = new JSONModel(oData.results);
+                    oCollection.setSizeLimit(6000);
+                    console.log(oCollection);
+                },
+                error: function (oError) {
+                    console.error("Error fetching data:", oError);
+                }
+            };
+            // Then: https://my366483.crm.ondemand.com/sap/c4c/odata/v1/c4codataapi/VisitCollection?$filter=ID eq '45' 
+            // 45 is CAPA_DOC_UUID
+            // Then we take ObjectID = 0A31A588BAB91FD09CB9A50EEC254B6A and go to 
+            // https://my366483.crm.ondemand.com/sap/c4c/odata/v1/c4codataapi/VisitCollection('0A31A588BAB91FD09CB9A50EEC254B6A')/VisitAttachment
+            // we take DocumentLink
+
+            // Make the read call
+            oModel.read(sPath, mParameters);
 
             const imageModel = this.getOwnerComponent().getModel("c4codataapi");
             imageModel.setUseBatch(false);
