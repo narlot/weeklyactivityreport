@@ -18,6 +18,10 @@ server:
         backend:
           - path: /sap
             url: https://my366483.crm.ondemand.com
+          - url: https://my366483.crm.ondemand.com
+            authenticationType: BasicAuthentication
+            destination: c4c
+            path: /sap/c4c/odata/v1/c4codataapi/
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

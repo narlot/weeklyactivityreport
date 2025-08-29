@@ -24,6 +24,15 @@
           "localUri": "localService/mainService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "c4codataapi": {
+        "uri": "/sap/c4c/odata/v1/c4codataapi/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/c4codataapi/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -65,6 +74,11 @@
       },
       "": {
         "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      },
+      "c4codataapi": {
+        "dataSource": "c4codataapi",
         "preload": true,
         "settings": {}
       }

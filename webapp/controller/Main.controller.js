@@ -8,19 +8,52 @@ sap.ui.define([
         onInit() {
             const oModel = this.getOwnerComponent().getModel();
             oModel.setUseBatch(false);
-            oModel.read(`/RPZ3A90C9E0326509CA61E521QueryResults`,
-                {
-                    success: function (oData, response) {
-                        const collection = new JSONModel(oData.results);
-                        collection.setSizeLimit(1000000);
-                        this.getView().setModel(collection, "WeeklyActivity");
-                        console.log(this.getView().getModel("WeeklyActivity").getData());
 
-                    }.bind(this),
-                    error: function (oError) {
-                        console.error(`Error loading data: ${oError}`);
-                    }
+            const imageModel = this.getOwnerComponent().getModel("c4codataapi");
+            imageModel.setUseBatch(false);
+            imageModel.read(`/VisitCollection('0A31A588BAB91FD09CB9A50EEC254B6A')/VisitAttachment('0A31A588BAB91FD09CD8ECF753942BB2')`, {
+                success: function (oData, response) {
+                    const collection = new JSONModel(oData);
+                    collection.setSizeLimit(6000);
+                    this.getView().setModel(collection, "ImageModel");
+
+                }.bind(this),
+                error: function (oError) {
+                    console.error(`Error loading image ${JSON.stringify(oError)}`);
+                }
+            });
+
+        },
+
+        onImagePress: function (oEvent) {
+            const sSrc = oEvent.getSource().getSrc();
+
+            if (!this._oImageDialog) {
+                this._oImageDialog = new sap.m.Dialog({
+                    title: "Full-size Image",
+                    contentWidth: "auto",
+                    contentHeight: "auto",
+                    resizable: true,
+                    draggable: true,
+                    content: [
+                        new sap.m.Image({
+                            src: sSrc,
+                            width: "100%",
+                            height: "100%"
+                        })
+                    ],
+                    beginButton: new sap.m.Button({
+                        text: "Close",
+                        press: function () {
+                            this._oImageDialog.close();
+                        }.bind(this)
+                    })
                 });
+            } else {
+                this._oImageDialog.getContent()[0].setSrc(sSrc);
+            }
+
+            this._oImageDialog.open();
         }
     });
 });

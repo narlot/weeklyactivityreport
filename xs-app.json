@@ -22,6 +22,13 @@
       "csrfProtection": false
     },
     {
+      "source": "^/c4codataapi/(.*)$",
+      "target": "$1",
+      "authenticationType": "xsuaa",
+      "destination": "c4c",
+      "csrfProtection": false
+    },
+    {
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",

@@ -11,15 +11,21 @@
                 growing="true">
                 <columns>
                     <Column><Text text="Activity"/></Column>
-                    <Column><Text text="Hours"/></Column>
-                    <Column><Text text="Owner"/></Column>
+                    <Column><Text text="Notes"/></Column>
+                    <Column><Text text="Image"/></Column>
                 </columns>
                 <items>
                     <ColumnListItem>
                         <cells>
                             <Text text="{CDOC_CREATIONDT}"/>
                             <Text text="{CDC_NOTES}"/>
-                            <Text text="{TAPA_DOC_UUID}"/>
+                            <Image
+                                src="{ImageModel>/DocumentLink}"
+                                width="50px"
+                                height="50px"
+                                press="onImagePress"
+                                tooltip="Click to view full image"
+                            />
                         </cells>
                     </ColumnListItem>
                 </items>
