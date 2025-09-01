@@ -35,10 +35,12 @@ sap.ui.define([
             this.getView().setModel(oCollection, "WeeklyActivity");
             // End: Set Model
 
+            // Start: Freeze the top row
             const oTable = this.byId("WeeklyActivityTable");
             const aSticky = oTable.getSticky() || [];
             aSticky.push("ColumnHeaders");
             oTable.setSticky(aSticky);
+            // End: Freeze the top row
 
         },
 
