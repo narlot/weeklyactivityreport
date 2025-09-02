@@ -7,241 +7,31 @@ sap.ui.define([
     return Controller.extend("activity.weekly.controller.Main", {
 
         async _initialize() {
-            const oModel = this.getOwnerComponent().getModel();
-            oModel.setUseBatch(false);
-
             const c4codataapiModel = this.getOwnerComponent().getModel("c4codataapi");
             c4codataapiModel.setUseBatch(false);
-
-            // Start: Weekly Activities
-            const weeklyActivity = await this._getWeeklyActivity(oModel);
-            // End: Weekly Activities
-
-            // Start: Keep Unique values only
-            const uniqueWeeklyActivity = this._getUniqueActivities(weeklyActivity);
-            // End: Keep Unique values only
-
-            // Start: Visit Object IDs
-            const visitObjectIDs = await this._getVisitObjectIDs(uniqueWeeklyActivity, c4codataapiModel);
-            // End: Visit Object IDs
-
-            // Start: Survey Response IDs
-            const surveyResponseIDs = await this._getSurveyResponseIDs(visitObjectIDs, c4codataapiModel);
-            // End: Survey Response IDs
-
-            // Start: Survey Response Items' IDs
-            const surveyItemsIDs = await this._getSurveyResponseItemIDs(surveyResponseIDs, c4codataapiModel);
-            // End: Survey Response Items' IDs
-
-            // Start: Get Document Links
-            const documentLinks = await this._getDocumentLinks(surveyItemsIDs, c4codataapiModel, weeklyActivity);
-            // End: Get Document Links
-
-            // Start: Set Model
-            const oCollection = new sap.ui.model.json.JSONModel();
-            oCollection.setSizeLimit(6000);
-            oCollection.setData(documentLinks);
-            this.getView().setModel(oCollection, "WeeklyActivity");
-            // End: Set Model
-
-            // Start: Freeze the top row
-            const oTable = this.byId("WeeklyActivityTable");
-            const aSticky = oTable.getSticky() || [];
-            aSticky.push("ColumnHeaders");
-            oTable.setSticky(aSticky);
-            // End: Freeze the top row
+            const that = this;
+            c4codataapiModel.read("/SurveyResponseItemCollection('0A31A588BAB91FD09CB9584115C68B69')/SurveyResponseItemAttachments('0A9D4C6001F11FD09E93421EE9E6726F')", {
+                success: function (oData) {
+                    const imageSrc = `data:${oData.MimeType};base64,${oData.Binary}`;
+                    const oWeeklyActivityModel = new JSONModel({
+                        WeeklyActivity: [
+                            {
+                                ID: "Waka",
+                                DocumentLink: imageSrc
+                            }
+                        ]
+                    });
+                    that.getView().setModel(oWeeklyActivityModel, "WeeklyActivity");
+                },
+                error: function (oError) {
+                    console.error("Error fetching Images:", oError);
+                }
+            });
         },
 
         onInit() {
             this._initialize();
-        },
-
-        _getWeeklyActivity: function (oModel) {
-            return new Promise((resolve, reject) => {
-                oModel.read("/RPZ3A90C9E0326509CA61E521QueryResults", {
-                    urlParameters: {
-                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,CQRE_VAL_ATTACHMENT_UUID,TAPA_DOC_UUID,TDOC_REP_YR_WEEK"
-                    },
-                    success: function (oData) {
-                        resolve(oData.results);
-                    },
-                    error: function (oError) {
-                        console.error("Error fetching data from Weekly Activity:", oError);
-                        reject(oError);
-                    }
-                });
-            });
-        },
-
-        _getUniqueActivities: function (weeklyActivity) {
-            const seen = new Set();
-            return weeklyActivity
-                .filter(item => {
-                    if (seen.has(item.CAPA_DOC_UUID)) {
-                        return false;
-                    }
-                    seen.add(item.CAPA_DOC_UUID);
-                    return true;
-                })
-                .map(item => item.CAPA_DOC_UUID);
-        },
-
-        _getVisitObjectIDs: function (uniqueWarIDs, oModel) {
-            const promises = uniqueWarIDs.map(id => {
-                return new Promise((resolve) => {
-                    oModel.read("/VisitCollection", {
-                        urlParameters: {
-                            "$filter": `ID eq '${id}'`
-                        },
-                        success: function (oData) {
-                            if (oData.results && oData.results.length > 0) {
-                                resolve({
-                                    ID: id,
-                                    ObjectID: oData.results[0].ObjectID
-                                });
-                            } else {
-                                resolve({
-                                    ID: id,
-                                    ObjectID: null
-                                });
-                            }
-                        },
-                        error: function (oError) {
-                            console.error("Error fetching Visit with ID:", id, oError);
-                            resolve({
-                                ID: id,
-                                ObjectID: null
-                            });
-                        }
-                    });
-                });
-            });
-
-            return Promise.all(promises).then(results => results.filter(item => item.ObjectID));
-        },
-
-        _getSurveyResponseIDs: function (visitObjectIDs, oModel) {
-            const promises = visitObjectIDs.map(item => {
-                return new Promise((resolve) => {
-                    oModel.read("/SurveyResponseCollection", {
-                        urlParameters: {
-                            "$filter": `BusinessTransactionDocumentUUID eq '${item.ObjectID}'`
-                        },
-                        success: function (oData) {
-                            if (oData.results && oData.results.length > 0) {
-                                resolve({
-                                    ID: item.ID,
-                                    SurveyResponseObjectID: oData.results[0].ObjectID
-                                });
-                            } else {
-                                resolve({
-                                    ID: item.ID,
-                                    SurveyResponseObjectID: null
-                                });
-                            }
-                        },
-                        error: function (oError) {
-                            console.error("Error fetching Survey Response for Visit ObjectID:", item.ObjectID, oError);
-                            resolve({
-                                ID: item.ID,
-                                VisitObjectID: item.ObjectID,
-                                SurveyResponseObjectID: null
-                            });
-                        }
-                    });
-                });
-            });
-
-            return Promise.all(promises).then(results => results.filter(r => r.SurveyResponseObjectID));
-        },
-
-        _getSurveyResponseItemIDs: function (surveyResponseIDs, oModel) {
-            const promises = surveyResponseIDs.map(id => {
-                return new Promise((resolve, reject) => {
-                    oModel.read(`/SurveyResponseCollection('${id.SurveyResponseObjectID}')/SurveyResponseItem`, {
-                        success: function (oData) {
-                            if (oData.results && oData.results.length > 0) {
-                                resolve({
-                                    ID: id.ID,
-                                    ItemObjectID: oData.results[0].ObjectID
-                                });
-                            } else {
-                                resolve({
-                                    ID: id.ID,
-                                    ItemObjectID: null
-                                });
-                            }
-                        },
-                        error: function (oError) {
-                            console.error("Error fetching Survey Response Items with ID:", id, oError);
-                            resolve(null);
-                        }
-                    });
-                });
-            });
-
-            return Promise.all(promises).then(results => results.filter(Boolean));
-        },
-
-        _getDocumentLinks: function (visitObjects, c4codataapiModel, weeklyActivity) {
-            const promises = visitObjects.map(obj => {
-                const itemObjectId = obj.ItemObjectID;
-                const visitId = obj.ID;
-
-                return new Promise((resolve) => {
-                    c4codataapiModel.read(`/SurveyResponseItemCollection('${itemObjectId}')/SurveyResponseItemAttachments`, {
-                        success: function (oData) {
-                            const relatedActivities = weeklyActivity.filter(act => act.CAPA_DOC_UUID == visitId);
-
-                            if (relatedActivities.length > 0) {
-                                const links = oData.results.map(r => r.DocumentLink);
-                                relatedActivities.forEach((act, index) => {
-                                    act.DocumentLink = links[index] || "";
-                                });
-                            }
-
-                            resolve();
-                        },
-                        error: function (oError) {
-                            console.error("Error fetching SurveyResponseItemAttachments for ItemObjectID:", itemObjectId, oError);
-                            resolve();
-                        }
-                    });
-                });
-            });
-
-            return Promise.all(promises).then(() => weeklyActivity);
-        },
-
-        onImagePress: function (oEvent) {
-            const sSrc = oEvent.getSource().getSrc();
-
-            if (!this._oImageDialog) {
-                this._oImageDialog = new sap.m.Dialog({
-                    title: "Full-size Image",
-                    contentWidth: "auto",
-                    contentHeight: "auto",
-                    resizable: true,
-                    draggable: true,
-                    content: [
-                        new sap.m.Image({
-                            src: sSrc,
-                            width: "100%",
-                            height: "100%"
-                        })
-                    ],
-                    beginButton: new sap.m.Button({
-                        text: "Close",
-                        press: function () {
-                            this._oImageDialog.close();
-                        }.bind(this)
-                    })
-                });
-            } else {
-                this._oImageDialog.getContent()[0].setSrc(sSrc);
-            }
-
-            this._oImageDialog.open();
         }
+
     });
 });
