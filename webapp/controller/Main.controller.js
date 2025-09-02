@@ -15,7 +15,6 @@ sap.ui.define([
 
             // Start: Weekly Activities
             const weeklyActivity = await this._getWeeklyActivity(oModel);
-            console.log(weeklyActivity);
             // End: Weekly Activities
 
             // Start: Keep Unique values only
