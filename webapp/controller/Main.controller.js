@@ -5,7 +5,8 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("activity.weekly.controller.Main", {
-        async onInit() {
+
+        async _initialize() {
             const oModel = this.getOwnerComponent().getModel();
             oModel.setUseBatch(false);
 
@@ -14,18 +15,27 @@ sap.ui.define([
 
             // Start: Weekly Activities
             const weeklyActivity = await this._getWeeklyActivity(oModel);
+            console.log(weeklyActivity);
             // End: Weekly Activities
 
             // Start: Keep Unique values only
             const uniqueWeeklyActivity = this._getUniqueActivities(weeklyActivity);
             // End: Keep Unique values only
 
-            // Start: Get ObjectID
-            const objectIDs = await this._getUniqueObjectIDs(uniqueWeeklyActivity, c4codataapiModel);
-            // End: Get ObjectID
+            // Start: Visit Object IDs
+            const visitObjectIDs = await this._getVisitObjectIDs(uniqueWeeklyActivity, c4codataapiModel);
+            // End: Visit Object IDs
+
+            // Start: Survey Response IDs
+            const surveyResponseIDs = await this._getSurveyResponseIDs(visitObjectIDs, c4codataapiModel);
+            // End: Survey Response IDs
+
+            // Start: Survey Response Items' IDs
+            const surveyItemsIDs = await this._getSurveyResponseItemIDs(surveyResponseIDs, c4codataapiModel);
+            // End: Survey Response Items' IDs
 
             // Start: Get Document Links
-            const documentLinks = await this._getDocumentLinks(objectIDs, c4codataapiModel, weeklyActivity);
+            const documentLinks = await this._getDocumentLinks(surveyItemsIDs, c4codataapiModel, weeklyActivity);
             // End: Get Document Links
 
             // Start: Set Model
@@ -41,36 +51,10 @@ sap.ui.define([
             aSticky.push("ColumnHeaders");
             oTable.setSticky(aSticky);
             // End: Freeze the top row
-
         },
 
-        _getDocumentLinks: function (visitObjects, c4codataapiModel, weeklyActivity) {
-            const promises = visitObjects.map(visit => {
-                const objectId = visit.ObjectID;
-                const visitId = visit.ID || visit.CAPA_DOC_UUID; // Ensure we have the ID to match weeklyActivity
-
-                return new Promise((resolve, reject) => {
-                    c4codataapiModel.read(`/VisitCollection('${objectId}')/VisitAttachment`, {
-                        success: function (oData) {
-                            const visitWithImage = weeklyActivity.filter(vwi => vwi.CAPA_DOC_UUID == visitId);
-
-                            if (visitWithImage.length > 0) {
-                                visitWithImage.forEach(item => {
-                                    item.DocumentLink = oData.results.length > 0 ? oData.results[0].DocumentLink : "";
-                                });
-                            }
-
-                            resolve();
-                        },
-                        error: function (oError) {
-                            console.error("Error fetching data from VisitAttachments:", oError);
-                            resolve();
-                        }
-                    });
-                });
-            });
-
-            return Promise.all(promises).then(() => weeklyActivity);
+        onInit() {
+            this._initialize();
         },
 
         _getWeeklyActivity: function (oModel) {
@@ -90,38 +74,144 @@ sap.ui.define([
             });
         },
 
-        _getUniqueObjectIDs: function (uniqueWeeklyActivity, c4codataapiModel) {
-            const promises = uniqueWeeklyActivity.map(activity => {
-                const visitId = activity.CAPA_DOC_UUID;
-                return new Promise((resolve, reject) => {
-                    c4codataapiModel.read("/VisitCollection", {
+        _getUniqueActivities: function (weeklyActivity) {
+            const seen = new Set();
+            return weeklyActivity
+                .filter(item => {
+                    if (seen.has(item.CAPA_DOC_UUID)) {
+                        return false;
+                    }
+                    seen.add(item.CAPA_DOC_UUID);
+                    return true;
+                })
+                .map(item => item.CAPA_DOC_UUID);
+        },
+
+        _getVisitObjectIDs: function (uniqueWarIDs, oModel) {
+            const promises = uniqueWarIDs.map(id => {
+                return new Promise((resolve) => {
+                    oModel.read("/VisitCollection", {
                         urlParameters: {
-                            "$filter": `ID eq '${visitId}'`
+                            "$filter": `ID eq '${id}'`
                         },
                         success: function (oData) {
-                            resolve(oData.results);
+                            if (oData.results && oData.results.length > 0) {
+                                resolve({
+                                    ID: id,
+                                    ObjectID: oData.results[0].ObjectID
+                                });
+                            } else {
+                                resolve({
+                                    ID: id,
+                                    ObjectID: null
+                                });
+                            }
                         },
                         error: function (oError) {
-                            console.error("Error fetching data from Visit:", oError);
-                            reject(oError);
+                            console.error("Error fetching Visit with ID:", id, oError);
+                            resolve({
+                                ID: id,
+                                ObjectID: null
+                            });
                         }
                     });
                 });
             });
 
-            return Promise.all(promises).then(results => results.flat());
+            return Promise.all(promises).then(results => results.filter(item => item.ObjectID));
         },
 
-        _getUniqueActivities: function (weeklyActivity) {
-            const seen = new Set();
-            return weeklyActivity.filter(item => {
-                const key = item.CAPA_DOC_UUID;
-                if (seen.has(key)) {
-                    return false;
-                }
-                seen.add(key);
-                return true;
+        _getSurveyResponseIDs: function (visitObjectIDs, oModel) {
+            const promises = visitObjectIDs.map(item => {
+                return new Promise((resolve) => {
+                    oModel.read("/SurveyResponseCollection", {
+                        urlParameters: {
+                            "$filter": `BusinessTransactionDocumentUUID eq '${item.ObjectID}'`
+                        },
+                        success: function (oData) {
+                            if (oData.results && oData.results.length > 0) {
+                                resolve({
+                                    ID: item.ID,
+                                    SurveyResponseObjectID: oData.results[0].ObjectID
+                                });
+                            } else {
+                                resolve({
+                                    ID: item.ID,
+                                    SurveyResponseObjectID: null
+                                });
+                            }
+                        },
+                        error: function (oError) {
+                            console.error("Error fetching Survey Response for Visit ObjectID:", item.ObjectID, oError);
+                            resolve({
+                                ID: item.ID,
+                                VisitObjectID: item.ObjectID,
+                                SurveyResponseObjectID: null
+                            });
+                        }
+                    });
+                });
             });
+
+            return Promise.all(promises).then(results => results.filter(r => r.SurveyResponseObjectID));
+        },
+
+        _getSurveyResponseItemIDs: function (surveyResponseIDs, oModel) {
+            const promises = surveyResponseIDs.map(id => {
+                return new Promise((resolve, reject) => {
+                    oModel.read(`/SurveyResponseCollection('${id.SurveyResponseObjectID}')/SurveyResponseItem`, {
+                        success: function (oData) {
+                            if (oData.results && oData.results.length > 0) {
+                                resolve({
+                                    ID: id.ID,
+                                    ItemObjectID: oData.results[0].ObjectID
+                                });
+                            } else {
+                                resolve({
+                                    ID: id.ID,
+                                    ItemObjectID: null
+                                });
+                            }
+                        },
+                        error: function (oError) {
+                            console.error("Error fetching Survey Response Items with ID:", id, oError);
+                            resolve(null);
+                        }
+                    });
+                });
+            });
+
+            return Promise.all(promises).then(results => results.filter(Boolean));
+        },
+
+        _getDocumentLinks: function (visitObjects, c4codataapiModel, weeklyActivity) {
+            const promises = visitObjects.map(obj => {
+                const itemObjectId = obj.ItemObjectID;
+                const visitId = obj.ID;
+
+                return new Promise((resolve) => {
+                    c4codataapiModel.read(`/SurveyResponseItemCollection('${itemObjectId}')/SurveyResponseItemAttachments`, {
+                        success: function (oData) {
+                            const relatedActivities = weeklyActivity.filter(act => act.CAPA_DOC_UUID == visitId);
+
+                            if (relatedActivities.length > 0) {
+                                const links = oData.results.map(r => r.DocumentLink);
+                                relatedActivities.forEach((act, index) => {
+                                    act.DocumentLink = links[index] || "";
+                                });
+                            }
+
+                            resolve();
+                        },
+                        error: function (oError) {
+                            console.error("Error fetching SurveyResponseItemAttachments for ItemObjectID:", itemObjectId, oError);
+                            resolve();
+                        }
+                    });
+                });
+            });
+
+            return Promise.all(promises).then(() => weeklyActivity);
         },
 
         onImagePress: function (oEvent) {
