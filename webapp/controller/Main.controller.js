@@ -194,9 +194,16 @@ sap.ui.define([
                             const relatedActivities = weeklyActivity.filter(act => act.CAPA_DOC_UUID == visitId);
 
                             if (relatedActivities.length > 0) {
-                                const links = oData.results.map(r => r.DocumentLink);
+                                let links = oData.results.map(r => {
+                                    return {
+                                        mimeType: r.MimeType,
+                                        binary: r.Binary
+                                    }
+                                });
                                 relatedActivities.forEach((act, index) => {
-                                    act.DocumentLink = links[index] || "";
+                                    if (links[index]) {
+                                        act.DocumentLink = `data:${links[index].mimeType};base64,${links[index].binary}` || "";
+                                    }
                                 });
                             }
 
