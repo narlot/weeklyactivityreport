@@ -60,7 +60,7 @@ sap.ui.define([
             return new Promise((resolve, reject) => {
                 oModel.read("/RPZ3A90C9E0326509CA61E521QueryResults", {
                     urlParameters: {
-                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,CQRE_VAL_ATTACHMENT_UUID,TAPA_DOC_UUID,TDOC_REP_YR_WEEK"
+                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,CQRE_VAL_ATTACHMENT_UUID,TAPA_DOC_UUID,CDOC_REP_YR_WEEK"
                     },
                     success: function (oData) {
                         resolve(oData.results);

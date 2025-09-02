@@ -10,7 +10,7 @@
             items="{
                 path: 'WeeklyActivity>/',
                 sorter: {
-                    path: 'TDOC_REP_YR_WEEK'
+                    path: 'CDOC_REP_YR_WEEK'
                 }
             }"
             growing="true"
@@ -78,7 +78,7 @@
             <items>
                 <ColumnListItem vAlign="Middle">
                     <cells>
-                        <Text text="{WeeklyActivity>TDOC_REP_YR_WEEK}"/>
+                        <Text text="{WeeklyActivity>CDOC_REP_YR_WEEK}"/>
                         <Text text="{WeeklyActivity>Ts1ANsDFE1FAA8A417519}"/>
                         <Text text="{WeeklyActivity>TAPA_DOC_UUID}"/>
                         <Text text="{WeeklyActivity>TAPA_PTY_MAINEMPLRESPP}"/>
