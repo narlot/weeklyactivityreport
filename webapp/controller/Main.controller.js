@@ -15,6 +15,15 @@ sap.ui.define([
 
             // Start: Weekly Activities
             const weeklyActivity = await this._getWeeklyActivity(oModel);
+
+            const uniqueWeeks = [...new Set(weeklyActivity.map(item => item.CDOC_REP_YR_WEEK))];
+            const war = uniqueWeeks.map(week => ({
+                key: week,
+                text: week
+            }));
+            const uniqueWeeksWAR = new JSONModel(war);
+            uniqueWeeksWAR.setSizeLimit(6000);
+            this.getView().setModel(uniqueWeeksWAR, "WarWeeks");
             // End: Weekly Activities
 
             // Start: Keep Unique values only
@@ -38,10 +47,15 @@ sap.ui.define([
             // End: Get Document Links
 
             // Start: Set Model
-            const oCollection = new sap.ui.model.json.JSONModel();
+            const oCollection = new JSONModel();
             oCollection.setSizeLimit(6000);
             oCollection.setData(documentLinks);
             this.getView().setModel(oCollection, "WeeklyActivity");
+
+            const oCollectionBackUp = new JSONModel();
+            oCollectionBackUp.setSizeLimit(6000);
+            oCollectionBackUp.setData(documentLinks);
+            this.getView().setModel(oCollectionBackUp, "WeeklyActivityBackup");
             // End: Set Model
 
             // Start: Freeze the top row
@@ -249,6 +263,34 @@ sap.ui.define([
             }
 
             this._oImageDialog.open();
+        },
+
+        _warReset: function () {
+            const warOriginal = this.getView().getModel("WeeklyActivity");
+            const warBackUp = this.getView().getModel("WeeklyActivityBackup").getData();
+
+            warOriginal.setData(warBackUp);
+            warOriginal.refresh();
+        },
+
+        warFiler: function (oEvent) {
+            const warFilter = this.byId("mcbWeekCalendarYearID");
+            const warFileritems = warFilter.getSelectedKeys();
+
+            if (warFileritems.length == 0) {
+                this._warReset();
+                return;
+            }
+
+            this._warReset();
+            const warOriginal = this.getView().getModel("WeeklyActivity");
+            const warOriginalData = warOriginal.getData();
+            const filteredData = warOriginalData.filter(item => warFileritems.includes(item.CDOC_REP_YR_WEEK));
+            warOriginal.setData(filteredData);
+            warOriginal.refresh();
+  
         }
+
+
     });
 });

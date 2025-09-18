@@ -10,7 +10,8 @@
             items="{
                 path: 'WeeklyActivity>/',
                 sorter: {
-                    path: 'CDOC_REP_YR_WEEK'
+                    path: 'CDOC_REP_YR_WEEK',
+                    descending: true
                 }
             }"
             growing="true"
@@ -19,60 +20,103 @@
             width="100%">
             <headerToolbar>
                 <OverflowToolbar>
-                    <content/>
+                    <content>
+                        <MultiComboBox
+                            id="mcbWeekCalendarYearID"
+                            width="350px"
+                            items="{
+                                path: 'WarWeeks>/',
+                                sorter: {
+                                    path: 'key',
+                                    descending: true
+                                }
+                            }"
+                            enabled="true"
+                            placeholder="{i18n>weekCalendarYear}"
+                        >
+                            <core:Item
+                                key="{WarWeeks>key}"
+                                text="{WarWeeks>text}"
+                            />
+                        </MultiComboBox>
+
+                        <Button
+                            text="{i18n>go}"
+                            press="warFiler"
+                            type="Emphasized"
+                            icon="sap-icon://search"
+                        />
+
+                        <ToolbarSpacer />
+
+                        <MenuButton
+                            text="{i18n>export}"
+                            defaultAction="onDefaultAction"
+                            beforeMenuOpen="onBeforeMenuOpen"
+                            useDefaultActionOnly="true" 
+                            menuPosition="RightBottom"
+                            icon="sap-icon://download">
+                            <menu>
+                                <Menu itemSelected="onMenuAction">
+                                    <MenuItem text="{i18n>excel}" icon="sap-icon://excel-attachment" />
+                                    <MenuItem text="{i18n>pdf}" icon="sap-icon://pdf-attachment" />
+                                </Menu>
+                            </menu>
+		                </MenuButton>
+                    </content>
                 </OverflowToolbar>
             </headerToolbar>
             <columns>
                 <Column
                     width="12em">
-                    <Text text="Week/Calendar Year" />
+                    <Text text="{i18n>weekCalendarYear}" />
                 </Column>
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true">
-                    <Text text="Main Product Categories" />
+                    <Text text="{i18n>mainProductCategories}" />
                 </Column>
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                     hAlign="Center">
-                    <Text text="Visit" />
+                    <Text text="{i18n>visit}" />
                 </Column>
                 <Column
                     minScreenWidth="Tablet"
                     demandPopin="true"
                     hAlign="Center">
-                    <Text text="Employee Responsible For Visit" />
+                    <Text text="{i18n>employeeResponsible}" />
                 </Column>
                 <Column
                     hAlign="Center"
                     minScreenWidth="Tablet"
                     demandPopin="true">
-                    <Text text="Account" />
+                    <Text text="{i18n>account}" />
                 </Column>
                 <Column
                     hAlign="Center"
                     minScreenWidth="Tablet"
                     demandPopin="true">
-                    <Text text="Notes" />
+                    <Text text="{i18n>notes}" />
                 </Column>
                 <Column
                     hAlign="Center"
                     minScreenWidth="Tablet"
                     demandPopin="true">
-                    <Text text="Image" />
+                    <Text text="{i18n>image}" />
                 </Column>
                 <Column
                     hAlign="Center"
                     minScreenWidth="Tablet"
                     demandPopin="true">
-                    <Text text="Activity Details" />
+                    <Text text="{i18n>activityDetails}" />
                 </Column>
                 <Column
                     hAlign="Center"
                     minScreenWidth="Tablet"
                     demandPopin="true">
-                    <Text text="Purpose" />
+                    <Text text="{i18n>purpose}" />
                 </Column>
             </columns>
             <items>
