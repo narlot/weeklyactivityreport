@@ -60,6 +60,7 @@
                                 <Menu itemSelected="onMenuAction">
                                     <MenuItem text="{i18n>excel}" icon="sap-icon://excel-attachment" />
                                     <MenuItem text="{i18n>pdf}" icon="sap-icon://pdf-attachment" />
+                                    <MenuItem text="{i18n>csv}" icon="sap-icon://document" />
                                 </Menu>
                             </menu>
 		                </MenuButton>

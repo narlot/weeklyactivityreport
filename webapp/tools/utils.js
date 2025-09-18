@@ -1,5 +1,10 @@
-sap.ui.define([], function () {
+sap.ui.define([
+    "sap/ui/export/Spreadsheet",
+    "sap/ui/export/library"
+], function (Spreadsheet, exportLibrary) {
     "use strict";
+
+    const EdmType = exportLibrary.EdmType;
 
     return {
         warToCSV: function (data, that) {
@@ -29,6 +34,89 @@ sap.ui.define([], function () {
             link.href = URL.createObjectURL(blob);
             link.download = "WeeklyActivity.csv";
             link.click();
+        },
+
+        warToExcel: function (that) {
+            const oTable = that.getView().byId("WeeklyActivityTable");
+            const oRowBinding = oTable.getBinding("items");
+            const aCols = this._createColumn(that);
+
+            const oSettings = {
+                workbook: {
+                    columns: aCols
+                },
+                dataSource: oRowBinding,
+                fileName: "WeeklyActivity"
+            }
+
+            const oSheet = new Spreadsheet(oSettings);
+            oSheet.build().finally(function () {
+                oSheet.destroy();
+            });
+
+        },
+
+        _createColumn: function (that) {
+            const i18n = that.getOwnerComponent().getModel("i18n").getResourceBundle();
+
+            const aCols = [];
+
+            aCols.push({
+                label: i18n.getText("weekCalendarYear"),
+                property: "CDOC_REP_YR_WEEK",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("mainProductCategories"),
+                property: "Ts1ANsDFE1FAA8A417519",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("visit"),
+                property: "TAPA_DOC_UUID",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("employeeResponsible"),
+                property: "TAPA_PTY_MAINEMPLRESPP",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("account"),
+                property: "CDOC_NOTES",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("notes"),
+                property: "CDOC_REP_YR_WEEK",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("image"),
+                property: "Link",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("activityDetails"),
+                property: "Ts1ANsBFEACD52FCDD795",
+                type: EdmType.String
+            });
+
+            aCols.push({
+                label: i18n.getText("purpose"),
+                property: "Ts1ANsEE730D1E08E7B3B",
+                type: EdmType.String
+            });
+
+            return aCols;
+
         }
 
     }

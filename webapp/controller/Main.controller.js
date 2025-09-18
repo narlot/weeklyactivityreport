@@ -307,6 +307,10 @@ sap.ui.define([
 
             switch (oItem) {
                 case "Excel": {
+                    utils.warToExcel(this);
+                    break;
+                }
+                case "CSV": {
                     utils.warToCSV(warOriginalData, this);
                     break;
                 }
