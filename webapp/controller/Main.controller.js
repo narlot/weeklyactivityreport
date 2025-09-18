@@ -1,7 +1,9 @@
+// https://port8080-workspaces-ws-uo5t0.us10.applicationstudio.cloud.sap/test/flp.html?sap-ui-xx-viewCache=false#app-preview
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], (Controller, JSONModel) => {
+    "sap/ui/model/json/JSONModel",
+    "activity/weekly/tools/utils"
+], (Controller, JSONModel, utils) => {
     "use strict";
 
     return Controller.extend("activity.weekly.controller.Main", {
@@ -211,12 +213,14 @@ sap.ui.define([
                                 let links = oData.results.map(r => {
                                     return {
                                         mimeType: r.MimeType,
-                                        binary: r.Binary
+                                        binary: r.Binary,
+                                        link: r.DocumentLink
                                     }
                                 });
                                 relatedActivities.forEach((act, index) => {
                                     if (links[index]) {
                                         act.DocumentLink = `data:${links[index].mimeType};base64,${links[index].binary}` || "";
+                                        act.Link = links[index].link
                                     }
                                 });
                             }
@@ -288,7 +292,28 @@ sap.ui.define([
             const filteredData = warOriginalData.filter(item => warFileritems.includes(item.CDOC_REP_YR_WEEK));
             warOriginal.setData(filteredData);
             warOriginal.refresh();
-  
+
+        },
+
+        onMenuAction: function (oEvent) {
+            const oItem = oEvent.getParameter("item").getText();
+
+            if (!oItem) {
+                return;
+            }
+
+            const warOriginal = this.getView().getModel("WeeklyActivity");
+            const warOriginalData = warOriginal.getData();
+
+            switch (oItem) {
+                case "Excel": {
+                    utils.warToCSV(warOriginalData, this);
+                    break;
+                }
+                case "PDF": {
+                    break;
+                }
+            }
         }
 
 
