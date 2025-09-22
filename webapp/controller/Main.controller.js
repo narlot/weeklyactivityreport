@@ -2,13 +2,15 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "activity/weekly/tools/utils"
-], (Controller, JSONModel, utils) => {
+    "activity/weekly/tools/utils",
+    "sap/m/MessageToast"
+], (Controller, JSONModel, utils, MessageToast) => {
     "use strict";
 
     return Controller.extend("activity.weekly.controller.Main", {
 
-        async _initialize() {
+        async _initialize(employeeid) {
+
             const oModel = this.getOwnerComponent().getModel();
             oModel.setUseBatch(false);
 
@@ -78,7 +80,23 @@ sap.ui.define([
         },
 
         onInit() {
-            this._initialize();
+            const router = this.getOwnerComponent().getRouter();
+            router.getRoute("RouteMain").attachPatternMatched(this._onRouteMatched, this);
+        },
+
+        _onRouteMatched: function (oEvent) {
+            const oArgs = oEvent.getParameter("arguments");
+            if (oArgs && oArgs["?query"]) {
+                const employeeid = oArgs["?query"].employeeid;
+
+                if (employeeid) {
+                    this._initialize(employeeid);
+                } else {
+                    const i18n = that.getOwnerComponent().getModel("i18n").getResourceBundle();
+                    MessageToast.show(i18n.getText("noUserIdentified"));
+                }
+
+            }
         },
 
         _getWeeklyActivity: function (oModel) {
