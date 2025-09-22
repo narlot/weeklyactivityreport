@@ -326,6 +326,11 @@ sap.ui.define([
             }
 
             const warOriginal = this.getView().getModel("WeeklyActivity");
+
+            if (!warOriginal) {
+                return;
+            }
+
             const warOriginalData = warOriginal.getData();
 
             switch (oItem) {
@@ -346,6 +351,11 @@ sap.ui.define([
         setYear: function (oEvent) {
             const selectedYears = oEvent.getSource().getSelectedItems();
             const warWeeks = this.getView().getModel("WarWeeks");
+
+            if (!warWeeks) {
+                return;
+            }
+
             const warWeeksData = warWeeks.getData();
 
             const result = warWeeksData.filter(item => {

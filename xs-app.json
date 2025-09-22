@@ -15,15 +15,8 @@
       "destination": "ui5"
     },
     {
-      "source": "^/c4c/(.*)$",
-      "target": "$1",
-      "authenticationType": "xsuaa",
-      "destination": "c4c",
-      "csrfProtection": false
-    },
-    {
-      "source": "^/c4codataapi/(.*)$",
-      "target": "$1",
+      "source": "^/sap/c4c/odata/(.*)$",
+      "target": "/sap/c4c/odata/$1",
       "authenticationType": "xsuaa",
       "destination": "c4c",
       "csrfProtection": false
