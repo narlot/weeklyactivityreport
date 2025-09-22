@@ -22,6 +22,26 @@
                 <OverflowToolbar>
                     <content>
                         <MultiComboBox
+                            id="mcbCalendarYearID"
+                            width="350px"
+                            items="{
+                                path: 'WarYears>/',
+                                sorter: {
+                                    path: 'key',
+                                    descending: true
+                                }
+                            }"
+                            enabled="true"
+                            placeholder="{i18n>calendarYear}"
+                            selectionFinish="setYear"
+                        >
+                            <core:Item
+                                key="{WarYears>key}"
+                                text="{WarYears>text}"
+                            />
+                        </MultiComboBox>
+
+                        <MultiComboBox
                             id="mcbWeekCalendarYearID"
                             width="350px"
                             items="{

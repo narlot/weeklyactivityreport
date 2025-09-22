@@ -26,6 +26,15 @@ sap.ui.define([
             const uniqueWeeksWAR = new JSONModel(war);
             uniqueWeeksWAR.setSizeLimit(6000);
             this.getView().setModel(uniqueWeeksWAR, "WarWeeks");
+
+            const uniqueWeeksWARBackUp = new JSONModel();
+            uniqueWeeksWARBackUp.setSizeLimit(6000);
+            uniqueWeeksWARBackUp.setData(war);
+            this.getView().setModel(uniqueWeeksWARBackUp, "WarWeeksBackup");
+
+            const uniqueYears = [...new Set(war.map(item => item.key.split("/")[1]))];
+            const result = uniqueYears.map(year => ({ key: year, text: year }));
+            this.getView().setModel(new JSONModel(result), "WarYears");
             // End: Weekly Activities
 
             // Start: Keep Unique values only
@@ -281,17 +290,31 @@ sap.ui.define([
             const warFilter = this.byId("mcbWeekCalendarYearID");
             const warFileritems = warFilter.getSelectedKeys();
 
-            if (warFileritems.length == 0) {
+            const warYearFilter = this.byId("mcbCalendarYearID");
+            const warYearFilterItems = warYearFilter.getSelectedKeys();
+
+            if (warFileritems.length == 0 && warYearFilterItems.length == 0) {
                 this._warReset();
                 return;
+            } else if (warFileritems.length > 0) {
+                this._warReset();
+                const warOriginal = this.getView().getModel("WeeklyActivity");
+                const warOriginalData = warOriginal.getData();
+                const filteredData = warOriginalData.filter(item => warFileritems.includes(item.CDOC_REP_YR_WEEK));
+                warOriginal.setData(filteredData);
+                warOriginal.refresh();
+            } else if (warYearFilterItems.length > 0) {
+                this._warReset();
+                const warOriginal = this.getView().getModel("WeeklyActivity");
+                const warOriginalData = warOriginal.getData();
+                const filteredData = warOriginalData.filter(item => {
+                    if (!item.CDOC_REP_YR_WEEK) return false;
+                    const year = item.CDOC_REP_YR_WEEK.split("/")[1];
+                    return warYearFilterItems.includes(year);
+                });
+                warOriginal.setData(filteredData);
+                warOriginal.refresh();
             }
-
-            this._warReset();
-            const warOriginal = this.getView().getModel("WeeklyActivity");
-            const warOriginalData = warOriginal.getData();
-            const filteredData = warOriginalData.filter(item => warFileritems.includes(item.CDOC_REP_YR_WEEK));
-            warOriginal.setData(filteredData);
-            warOriginal.refresh();
 
         },
 
@@ -318,6 +341,30 @@ sap.ui.define([
                     break;
                 }
             }
+        },
+
+        setYear: function (oEvent) {
+            const selectedYears = oEvent.getSource().getSelectedItems();
+            const warWeeks = this.getView().getModel("WarWeeks");
+            const warWeeksData = warWeeks.getData();
+
+            const result = warWeeksData.filter(item => {
+                const year = item.key.split("/")[1].trim();
+                return selectedYears
+                    .map(y => y.getKey().toString().trim())
+                    .includes(year);
+            });
+
+            if (result.length != 0) {
+                warWeeks.setData(result);
+                warWeeks.refresh();
+            } else {
+                const warWeeksBackup = this.getView().getModel("WarWeeksBackup");
+                const warWeeksDataBackup = warWeeksBackup.getData();
+                warWeeks.setData(warWeeksDataBackup);
+                warWeeks.refresh();
+            }
+
         }
 
 
