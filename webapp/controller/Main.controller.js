@@ -22,8 +22,8 @@ sap.ui.define([
 
             const uniqueWeeks = [...new Set(weeklyActivity.map(item => item.CDOC_REP_YR_WEEK))];
             const war = uniqueWeeks.map(week => ({
-                key: week,
-                text: week
+                key: utils.getWeekEnd(week),
+                text: utils.getWeekEnd(week)
             }));
             const uniqueWeeksWAR = new JSONModel(war);
             uniqueWeeksWAR.setSizeLimit(6000);
@@ -34,7 +34,7 @@ sap.ui.define([
             uniqueWeeksWARBackUp.setData(war);
             this.getView().setModel(uniqueWeeksWARBackUp, "WarWeeksBackup");
 
-            const uniqueYears = [...new Set(war.map(item => item.key.split("/")[1]))];
+            const uniqueYears = [...new Set(war.map(item => item.key.split("/")[2]))];
             const result = uniqueYears.map(year => ({ key: year, text: year }));
             this.getView().setModel(new JSONModel(result), "WarYears");
             // End: Weekly Activities
@@ -59,6 +59,10 @@ sap.ui.define([
             const documentLinks = await this._getDocumentLinks(surveyItemsIDs, c4codataapiModel, weeklyActivity);
             // End: Get Document Links
 
+            documentLinks.forEach((o)=>{
+                o.WeekEnding = utils.getWeekEnd(o.CDOC_REP_YR_WEEK);
+            });
+            
             // Start: Set Model
             const oCollection = new JSONModel();
             oCollection.setSizeLimit(6000);
@@ -77,6 +81,8 @@ sap.ui.define([
             aSticky.push("ColumnHeaders");
             oTable.setSticky(aSticky);
             // End: Freeze the top row
+
+            this.getView().byId("WeeklyActivityID").setBusy(false);
         },
 
         onInit() {
@@ -238,6 +244,7 @@ sap.ui.define([
 
                             if (relatedActivities.length > 0) {
                                 let links = oData.results.map(r => {
+                                    
                                     return {
                                         mimeType: r.MimeType,
                                         binary: r.Binary,
@@ -247,11 +254,10 @@ sap.ui.define([
                                 relatedActivities.forEach((act, index) => {
                                     if (links[index]) {
                                         act.DocumentLink = `data:${links[index].mimeType};base64,${links[index].binary}` || "";
-                                        act.Link = links[index].link
+                                        act.Link = links[index].link;
                                     }
                                 });
                             }
-
                             resolve();
                         },
                         error: function (oError) {
@@ -318,7 +324,7 @@ sap.ui.define([
                 this._warReset();
                 const warOriginal = this.getView().getModel("WeeklyActivity");
                 const warOriginalData = warOriginal.getData();
-                const filteredData = warOriginalData.filter(item => warFileritems.includes(item.CDOC_REP_YR_WEEK));
+                const filteredData = warOriginalData.filter(item => warFileritems.includes(item.WeekEnding));
                 warOriginal.setData(filteredData);
                 warOriginal.refresh();
             } else if (warYearFilterItems.length > 0) {
@@ -326,8 +332,8 @@ sap.ui.define([
                 const warOriginal = this.getView().getModel("WeeklyActivity");
                 const warOriginalData = warOriginal.getData();
                 const filteredData = warOriginalData.filter(item => {
-                    if (!item.CDOC_REP_YR_WEEK) return false;
-                    const year = item.CDOC_REP_YR_WEEK.split("/")[1];
+                    if (!item.WeekEnding) return false;
+                    const year = item.WeekEnding.split("/")[2];
                     return warYearFilterItems.includes(year);
                 });
                 warOriginal.setData(filteredData);
@@ -377,7 +383,7 @@ sap.ui.define([
             const warWeeksData = warWeeks.getData();
 
             const result = warWeeksData.filter(item => {
-                const year = item.key.split("/")[1].trim();
+                const year = item.key.split("/")[2].trim();
                 return selectedYears
                     .map(y => y.getKey().toString().trim())
                     .includes(year);

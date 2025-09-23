@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/export/Spreadsheet",
-    "sap/ui/export/library"
-], function (Spreadsheet, exportLibrary) {
+    "sap/ui/export/library",
+    "sap/ui/core/format/DateFormat"
+], function (Spreadsheet, exportLibrary, DateFormat) {
     "use strict";
 
     const EdmType = exportLibrary.EdmType;
@@ -116,6 +117,36 @@ sap.ui.define([
             });
 
             return aCols;
+
+        },
+
+        getWeekEnd: function (weekCalendarYear) {
+            const [weekStr, yearStr] = weekCalendarYear.split("/");
+            const week = parseInt(weekStr, 10);
+            const year = parseInt(yearStr, 10);
+
+            // Jan 4 is always in week 1 (ISO)
+            const jan4 = new Date(year, 0, 4);
+
+            // Calculate Monday of that week
+            const day = jan4.getDay(); // 0=Sun...6=Sat
+            const mondayOfWeek1 = new Date(jan4);
+            // Shift backwards to Monday
+            mondayOfWeek1.setDate(jan4.getDate() - ((day + 6) % 7));
+
+            // Monday of target week
+            const targetMonday = new Date(mondayOfWeek1);
+            targetMonday.setDate(mondayOfWeek1.getDate() + (week - 1) * 7);
+
+            // Friday = Monday + 4
+            const friday = new Date(targetMonday);
+            friday.setDate(targetMonday.getDate() + 4 + 7);
+
+            const oDateFormat = DateFormat.getDateInstance({
+                pattern: "dd/MM/yyyy"
+            });
+
+            return oDateFormat.format(friday);
 
         }
 
