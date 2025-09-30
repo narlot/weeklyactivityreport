@@ -231,7 +231,7 @@ sap.ui.define([
                         }
                     } else if (attrs[i.value]) {
                         let cleansedValue = this._escapeSpecialCharsXML(attrs[i.value]);
-                        cleansedValue = this.nonLatin(cleansedValue);
+                        cleansedValue = this._nonLatin(cleansedValue);
                         xmlBody += `<${i.key}>${cleansedValue}</${i.key}>`;
                     }
                 });
@@ -283,7 +283,7 @@ sap.ui.define([
                 .trim();
         },
 
-        nonLatin: function (str) {
+        _nonLatin: function (str) {
             const overrideChars = [
                 "å", "æ", "ø", "à", "á", "â", "ä", "ã", "ā", "ą", "ă", "ǎ", "ç", "ĉ", "č", "ć", "Ch", "ð", "ď", "ǆ", "è", "é", "ê", "ë", "ę", "ē",
                 "ĕ", "ė", "ě", "ĝ", "ğ", "ġ", "ģ", "ǧ", "ĥ", "ħ", "ì", "í", "î", "ï", "į", "ı", "ĩ", "ī", "ĭ", "ĵ", "ķ", "ǩ", "ĺ", "ļ", "ľ", "ŀ",
