@@ -1,0 +1,40 @@
+{
+    "xmlRoot": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+    "xmlHeaderStart": "<Header>",
+    "xmlHeaderEnd": "</Header>",
+    "xmlWeekEndingStart": "<WeekEnding>",
+    "xmlWeekEndingEnd": "</WeekEnding>",
+    "xmlFormStart": "<form1>",
+    "xmlFormEnd": "</form1>",
+    "xmlBodyMainStart": "<Main>",
+    "xmlBodyItemStart": "<Item>",
+    "xmlBodyItemEnd": "</Item>",
+    "xmlBodyMainEnd": "</Main>",
+    "xmlBodyItemAttributes": [
+        {
+            "key": "MainProductCategory",
+            "value": "Ts1ANsDFE1FAA8A417519",
+            "seq": 1
+        },
+        {
+            "key": "EmployeeResponsible",
+            "value": "TAPA_PTY_MAINEMPLRESPPTY_N",
+            "seq": 2
+        },
+        {
+            "key": "Account",
+            "value": "TAPA_PTY_MAINACTIVITYPTY",
+            "seq": 3
+        },
+        {
+            "key": "Note",
+            "value": "CDOC_NOTES",
+            "seq": 4
+        },
+        {
+            "key": "Attachment",
+            "value": "DocumentLink",
+            "seq": 5
+        }
+    ]
+}

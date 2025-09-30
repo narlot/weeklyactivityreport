@@ -22,6 +22,13 @@
       "csrfProtection": false
     },
     {
+      "source": "^/v1/(.*)$",
+      "target": "/v1/$1",
+      "authenticationType": "none",
+      "csrfProtection": false,
+      "destination": "ADS_SRV"
+    },
+    {
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",

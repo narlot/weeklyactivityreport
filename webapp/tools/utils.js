@@ -148,6 +148,122 @@ sap.ui.define([
 
             return oDateFormat.format(friday);
 
+        },
+
+        warToPDF: function (data, that) {
+            const xmlData = this._buildXMLData(data, that);
+
+            fetch(`v1/forms/WAR`, {
+                method: "GET"
+            })
+                .then(response => response.json())
+                .then(function (json) {
+                    fetch(`v1/adsRender/pdf`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "xdpTemplate": json.templates[0].xdpTemplate,
+                            "xmlData": xmlData,
+                            "formType": "print",
+                            "formLocale": "en_US",
+                            "taggedPdf": 1,
+                            "embedFont": 0,
+                            "changeNotAllowed": false,
+                            "printNotAllowed": false,
+                            "useCustomLocale": false
+                        })
+                    }).then(response => response.json())
+                        .then(function (json) {
+                            const base64 = json.fileContent.replace(/\s/g, '');
+                            const binaryString = atob(base64);
+                            const len = binaryString.length;
+                            const bytes = new Uint8Array(len);
+                            for (let i = 0; i < len; i++) {
+                                bytes[i] = binaryString.charCodeAt(i);
+                            }
+
+                            const blob = new Blob([bytes], { type: "application/pdf" });
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement("a");
+                            a.href = url;
+                            a.download = "WeeklyActivity.pdf";
+                            document.body.appendChild(a);
+                            a.click();
+                            a.remove();
+                            window.URL.revokeObjectURL(url);
+                        });
+
+                });
+        },
+
+        _buildXMLData: function (data, that) {
+            const xmlModel = that.getOwnerComponent().getModel("XMLSchema").getData();
+
+            let xmlSchema = xmlModel.xmlRoot;
+            xmlSchema += xmlModel.xmlFormStart;
+
+            xmlSchema += xmlModel.xmlHeaderStart;
+            xmlSchema += xmlModel.xmlWeekEndingStart;
+            xmlSchema += this._getCurrentWeekEnding();
+            xmlSchema += xmlModel.xmlWeekEndingEnd;
+            xmlSchema += xmlModel.xmlHeaderEnd;
+
+            xmlSchema += xmlModel.xmlBodyMainStart;
+
+            let xmlBody = "";
+            data.forEach(o => {
+                const { __metadata, ...attrs } = o;
+
+                xmlBody += xmlModel.xmlBodyItemStart;
+
+                xmlModel.xmlBodyItemAttributes.sort((a, b) => a.seq - b.seq);
+                xmlModel.xmlBodyItemAttributes.forEach(i => {
+                    if (i.key == "Attachment" && attrs[i.value]) {
+                        const binaryArray = attrs[i.value].split(",");
+                        if (binaryArray.length > 0) {
+                            xmlBody += `<${i.key}>${binaryArray[1]}</${i.key}>`;
+                        }
+                    } else {
+                        xmlBody += `<${i.key}>${attrs[i.value]}</${i.key}>`;
+                    }
+                });
+
+                xmlBody += xmlModel.xmlBodyItemEnd;
+
+            });
+
+            if (xmlBody.length > 0) {
+                xmlSchema += xmlBody;
+                xmlSchema += xmlModel.xmlBodyMainEnd;
+                xmlSchema += xmlModel.xmlFormEnd;
+
+                const xmlBase64 = btoa(xmlSchema);
+                return xmlBase64;
+
+            } else {
+                return;
+            }
+        },
+
+        _getCurrentWeekEnding: function () {
+            const today = new Date();
+            const day = today.getDay();
+            let diff = 5 - day;
+            if (day === 6) diff = -1;
+            if (day === 0) diff = 5;
+
+            const weekEnd = new Date(today);
+            weekEnd.setDate(today.getDate() + diff);
+
+            return weekEnd.toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+
         }
 
     }

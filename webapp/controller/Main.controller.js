@@ -59,10 +59,10 @@ sap.ui.define([
             const documentLinks = await this._getDocumentLinks(surveyItemsIDs, c4codataapiModel, weeklyActivity);
             // End: Get Document Links
 
-            documentLinks.forEach((o)=>{
+            documentLinks.forEach((o) => {
                 o.WeekEnding = utils.getWeekEnd(o.CDOC_REP_YR_WEEK);
             });
-            
+
             // Start: Set Model
             const oCollection = new JSONModel();
             oCollection.setSizeLimit(6000);
@@ -244,7 +244,7 @@ sap.ui.define([
 
                             if (relatedActivities.length > 0) {
                                 let links = oData.results.map(r => {
-                                    
+
                                     return {
                                         mimeType: r.MimeType,
                                         binary: r.Binary,
@@ -367,6 +367,7 @@ sap.ui.define([
                     break;
                 }
                 case "PDF": {
+                    utils.warToPDF(warOriginalData, this);
                     break;
                 }
             }

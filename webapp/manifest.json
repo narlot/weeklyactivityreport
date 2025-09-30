@@ -81,6 +81,14 @@
         "dataSource": "c4codataapi",
         "preload": true,
         "settings": {}
+      },
+      "XMLSchema": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/config/XMLSchema.json",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        }
       }
     },
     "resources": {
