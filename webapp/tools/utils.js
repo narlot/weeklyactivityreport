@@ -151,6 +151,8 @@ sap.ui.define([
         },
 
         warToPDF: function (data, that) {
+            that.byId("ExportButtonId").setBusy(true);
+
             const xmlData = this._buildXMLData(data, that);
 
             fetch(`v1/forms/WAR`, {
@@ -193,6 +195,8 @@ sap.ui.define([
                             a.click();
                             a.remove();
                             window.URL.revokeObjectURL(url);
+
+                            that.byId("ExportButtonId").setBusy(false);
                         });
 
                 });
@@ -225,8 +229,10 @@ sap.ui.define([
                         if (binaryArray.length > 0) {
                             xmlBody += `<${i.key}>${binaryArray[1]}</${i.key}>`;
                         }
-                    } else {
-                        xmlBody += `<${i.key}>${attrs[i.value]}</${i.key}>`;
+                    } else if (attrs[i.value]) {
+                        let cleansedValue = this._escapeSpecialCharsXML(attrs[i.value]);
+                        cleansedValue = this.nonLatin(cleansedValue);
+                        xmlBody += `<${i.key}>${cleansedValue}</${i.key}>`;
                     }
                 });
 
@@ -264,6 +270,35 @@ sap.ui.define([
                 day: "numeric"
             });
 
+        },
+
+        _escapeSpecialCharsXML: function (str) {
+            if (typeof str !== 'string') return str;
+            return str
+                .replace(/&/g, '')
+                .replace(/</g, '')
+                .replace(/>/g, '')
+                .replace(/"/g, '')
+                .replace(/'/g, '')
+                .trim();
+        },
+
+        nonLatin: function (str) {
+            const overrideChars = [
+                "å", "æ", "ø", "à", "á", "â", "ä", "ã", "ā", "ą", "ă", "ǎ", "ç", "ĉ", "č", "ć", "Ch", "ð", "ď", "ǆ", "è", "é", "ê", "ë", "ę", "ē",
+                "ĕ", "ė", "ě", "ĝ", "ğ", "ġ", "ģ", "ǧ", "ĥ", "ħ", "ì", "í", "î", "ï", "į", "ı", "ĩ", "ī", "ĭ", "ĵ", "ķ", "ǩ", "ĺ", "ļ", "ľ", "ŀ",
+                "ł", "ń", "ņ", "ñ", "ň", "ò", "ó", "ô", "ö", "õ", "ő", "ǫ", "ō", "ŏ", "ơ", "ŕ", "ŗ", "ř", "ś", "ŝ", "ş", "ș", "š", "ß", "ŧ",
+                "ţ", "ț", "þ", "ù", "ú", "û", "ü", "ũ", "ū", "ŭ", "ų", "ů", "ű", "ƿ", "ȝ", "ư", "ŵ", "ý", "ŷ", "ÿ", "ź", "ž", "ż"
+            ];
+
+            let lValue = str;
+            for (let i = 0; i < overrideChars.length; i++) {
+                const pattern = overrideChars[i].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+                const regExp = new RegExp(pattern, "g");
+                lValue = lValue.replace(regExp, "");
+            }
+
+            return lValue;
         }
 
     }

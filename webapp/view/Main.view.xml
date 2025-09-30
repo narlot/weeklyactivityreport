@@ -70,12 +70,14 @@
                         <ToolbarSpacer />
 
                         <MenuButton
+                            id="ExportButtonId"
                             text="{i18n>export}"
                             defaultAction="onDefaultAction"
                             beforeMenuOpen="onBeforeMenuOpen"
                             useDefaultActionOnly="true" 
                             menuPosition="RightBottom"
-                            icon="sap-icon://download">
+                            icon="sap-icon://download"
+                            busy="false">
                             <menu>
                                 <Menu itemSelected="onMenuAction">
                                     <MenuItem text="{i18n>excel}" icon="sap-icon://excel-attachment" />
@@ -146,8 +148,8 @@
                         <Text text="{WeeklyActivity>WeekEnding}"/>
                         <Text text="{WeeklyActivity>Ts1ANsDFE1FAA8A417519}"/>
                         <Text text="{WeeklyActivity>TAPA_DOC_UUID}"/>
-                        <Text text="{WeeklyActivity>TAPA_PTY_MAINEMPLRESPP}"/>
-                        <Text text="{WeeklyActivity>TAPA_PTY_MAINACTIVITYP}"/>
+                        <Text text="{WeeklyActivity>TAPA_PTY_MAINEMPLRESPPTY_N}"/>
+                        <Text text="{WeeklyActivity>TAPA_PTY_MAINACTIVITYPTY}"/>
                         <Text text="{WeeklyActivity>CDOC_NOTES}"/>
                         <Image
                             src="{WeeklyActivity>DocumentLink}"
