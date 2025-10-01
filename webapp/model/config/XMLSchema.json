@@ -7,9 +7,11 @@
     "xmlFormStart": "<form1>",
     "xmlFormEnd": "</form1>",
     "xmlBodyMainStart": "<Main>",
+    "xmlBodyMainEnd": "</Main>",
+    "xmlItemSubformStart":"<ItemSubform>",
+    "xmlItemSubformEnd":"</ItemSubform>",
     "xmlBodyItemStart": "<Item>",
     "xmlBodyItemEnd": "</Item>",
-    "xmlBodyMainEnd": "</Main>",
     "xmlBodyItemAttributes": [
         {
             "key": "MainProductCategory",

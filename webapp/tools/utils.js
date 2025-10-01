@@ -207,6 +207,8 @@ sap.ui.define([
 
             let xmlSchema = xmlModel.xmlRoot;
             xmlSchema += xmlModel.xmlFormStart;
+            
+            xmlSchema += xmlModel.xmlBodyMainStart;
 
             xmlSchema += xmlModel.xmlHeaderStart;
             xmlSchema += xmlModel.xmlWeekEndingStart;
@@ -214,7 +216,7 @@ sap.ui.define([
             xmlSchema += xmlModel.xmlWeekEndingEnd;
             xmlSchema += xmlModel.xmlHeaderEnd;
 
-            xmlSchema += xmlModel.xmlBodyMainStart;
+            xmlSchema += xmlModel.xmlItemSubformStart;
 
             let xmlBody = "";
             data.forEach(o => {
@@ -242,6 +244,7 @@ sap.ui.define([
 
             if (xmlBody.length > 0) {
                 xmlSchema += xmlBody;
+                xmlSchema += xmlModel.xmlItemSubformEnd;
                 xmlSchema += xmlModel.xmlBodyMainEnd;
                 xmlSchema += xmlModel.xmlFormEnd;
 
