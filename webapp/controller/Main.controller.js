@@ -19,12 +19,11 @@ sap.ui.define([
 
             // Start: Weekly Activities
             const weeklyActivity = await this._getWeeklyActivity(oModel);
-            console.log(weeklyActivity);
 
-            const uniqueWeeks = [...new Set(weeklyActivity.map(item => item.CDOC_REP_YR_WEEK))];
+            const uniqueWeeks = [...new Set(weeklyActivity.map(item => utils.getWeekEnd(item.CDOC_CREATIONDT)))];
             const war = uniqueWeeks.map(week => ({
-                key: utils.getWeekEnd(week),
-                text: utils.getWeekEnd(week)
+                key: week,
+                text: week
             }));
             const uniqueWeeksWAR = new JSONModel(war);
             uniqueWeeksWAR.setSizeLimit(6000);
@@ -61,7 +60,7 @@ sap.ui.define([
             // End: Get Document Links
 
             documentLinks.forEach((o) => {
-                o.WeekEnding = utils.getWeekEnd(o.CDOC_REP_YR_WEEK);
+                o.WeekEnding = utils.getWeekEnd(o.CDOC_CREATIONDT);
             });
 
             // Start: Set Model
@@ -108,11 +107,9 @@ sap.ui.define([
 
         _getWeeklyActivity: function (oModel) {
             return new Promise((resolve, reject) => {
-                oModel.read("/RPZ3A90C9E0326509CA61E521QueryResults", {
-                    //oModel.read("/RPZ7B32F78E06B31CCE82FB26QueryResults", {
+                oModel.read("/RPZ7B32F78E06B31CCE82FB26QueryResults", {
                     urlParameters: {
-                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_REP_YR_WEEK"//,CQRE_VAL_ATTACHMENT_UUID"
-                        //"$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_CREATIONDT"
+                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_CREATIONDT"
                     },
                     success: function (oData) {
                         resolve(oData.results);
@@ -138,127 +135,134 @@ sap.ui.define([
                 .map(item => item.CAPA_DOC_UUID);
         },
 
-        _getVisitObjectIDs: function (uniqueWarIDs, oModel) {
-            const promises = uniqueWarIDs.map(id => {
-                return new Promise((resolve) => {
+        _getVisitObjectIDs: async function (uniqueWarIDs, oModel) {
+            const chunkSize = 300;
+            const chunks = [];
+
+            for (let i = 0; i < uniqueWarIDs.length; i += chunkSize) {
+                chunks.push(uniqueWarIDs.slice(i, i + chunkSize));
+            }
+
+            const results = await Promise.all(
+                chunks.map(ids => new Promise((resolve, reject) => {
+                    const filterString = ids.map(id => `ID eq '${id}'`).join(" or ");
                     oModel.read("/VisitCollection", {
                         urlParameters: {
-                            "$filter": `ID eq '${id}'`
+                            "$filter": filterString
                         },
                         success: function (oData) {
-                            if (oData.results && oData.results.length > 0) {
-                                resolve({
-                                    ID: id,
-                                    ObjectID: oData.results[0].ObjectID
-                                });
-                            } else {
-                                resolve({
-                                    ID: id,
-                                    ObjectID: null
-                                });
-                            }
-                        },
-                        error: function (oError) {
-                            console.error("Error fetching Visit with ID:", id, oError);
-                            resolve({
-                                ID: id,
-                                ObjectID: null
+                            const map = {};
+                            oData.results.forEach(item => {
+                                map[item.ID] = item.ObjectID;
                             });
-                        }
+                            resolve(ids.map(id => (
+                                {
+                                    ID: id,
+                                    ObjectID: map[id] || null
+                                })));
+                        },
+                        error: reject
                     });
-                });
-            });
+                }))
+            );
 
-            return Promise.all(promises).then(results => results.filter(item => item.ObjectID));
+            return results.flat();
         },
 
-        _getSurveyResponseIDs: function (visitObjectIDs, oModel) {
-            const promises = visitObjectIDs.map(item => {
-                return new Promise((resolve) => {
+        _getSurveyResponseIDs: async function (visitObjectIDs, oModel) {
+            const chunkSize = 300;
+            const chunks = [];
+            for (let i = 0; i < visitObjectIDs.length; i += chunkSize) {
+                chunks.push(visitObjectIDs.slice(i, i + chunkSize));
+            }
+
+            const results = await Promise.all(
+                chunks.map(ids => new Promise((resolve, reject) => {
+                    const filterString = ids
+                        .map(item => `BusinessTransactionDocumentUUID eq '${item.ObjectID}'`)
+                        .join(" or ");
+
                     oModel.read("/SurveyResponseCollection", {
-                        urlParameters: {
-                            "$filter": `BusinessTransactionDocumentUUID eq '${item.ObjectID}'`
-                        },
+                        urlParameters: { "$filter": filterString },
                         success: function (oData) {
-                            if (oData.results && oData.results.length > 0) {
-                                resolve({
-                                    ID: item.ID,
-                                    SurveyResponseObjectID: oData.results[0].ObjectID
-                                });
-                            } else {
-                                resolve({
-                                    ID: item.ID,
-                                    SurveyResponseObjectID: null
-                                });
-                            }
+                            const map = {};
+                            oData.results.forEach(item => {
+                                map[item.BusinessTransactionDocumentUUID] = item.ObjectID;
+                            });
+
+                            const mapped = ids.map(id => ({
+                                ID: id.ID,
+                                SurveyResponseObjectID: map[id.ObjectID] || null
+                            }));
+
+                            resolve(mapped);
                         },
                         error: function (oError) {
-                            console.error("Error fetching Survey Response for Visit ObjectID:", item.ObjectID, oError);
-                            resolve({
-                                ID: item.ID,
-                                VisitObjectID: item.ObjectID,
+                            console.error("Error fetching SurveyResponses:", oError);
+                            resolve(ids.map(id => ({
+                                ID: id.ID,
                                 SurveyResponseObjectID: null
-                            });
+                            })));
                         }
                     });
-                });
-            });
+                }))
+            );
 
-            return Promise.all(promises).then(results => results.filter(r => r.SurveyResponseObjectID));
+            return results.flat().filter(r => r.SurveyResponseObjectID);
         },
 
-        _getSurveyResponseItemIDs: function (surveyResponseIDs, oModel) {
-            const promises = surveyResponseIDs.map(id => {
-                return new Promise((resolve, reject) => {
+        _getSurveyResponseItemIDs: async function (surveyResponseIDs, oModel) {
+            const validIDs = surveyResponseIDs.filter(id => id.SurveyResponseObjectID);
+            if (validIDs.length === 0) return [];
+
+            const fetchItem = id => {
+                return new Promise(resolve => {
                     oModel.read(`/SurveyResponseCollection('${id.SurveyResponseObjectID}')/SurveyResponseItem`, {
                         success: function (oData) {
-                            if (oData.results && oData.results.length > 0) {
+                            if (oData.results?.length > 0) {
                                 resolve({
                                     ID: id.ID,
                                     ItemObjectID: oData.results[0].ObjectID
                                 });
                             } else {
-                                resolve({
-                                    ID: id.ID,
-                                    ItemObjectID: null
-                                });
+                                resolve(null);
                             }
                         },
                         error: function (oError) {
-                            console.error("Error fetching Survey Response Items with ID:", id, oError);
+                            console.error("Error fetching Survey Response Item:", id, oError);
                             resolve(null);
                         }
                     });
                 });
-            });
+            };
 
-            return Promise.all(promises).then(results => results.filter(Boolean));
+            const MAX_CONCURRENT = 5;
+            const results = [];
+            for (let i = 0; i < validIDs.length; i += MAX_CONCURRENT) {
+                const batch = validIDs.slice(i, i + MAX_CONCURRENT);
+                const batchResults = await Promise.all(batch.map(fetchItem));
+                results.push(...batchResults.filter(Boolean));
+            }
+
+            return results;
         },
 
-        _getDocumentLinks: function (visitObjects, c4codataapiModel, weeklyActivity) {
-            const promises = visitObjects.map(obj => {
-                const itemObjectId = obj.ItemObjectID;
-                const visitId = obj.ID;
+        _getDocumentLinks: async function (visitObjects, c4codataapiModel, weeklyActivity) {
+            const validVisits = visitObjects.filter(v => v.ItemObjectID);
+            if (validVisits.length === 0) return weeklyActivity;
 
-                return new Promise((resolve) => {
-                    c4codataapiModel.read(`/SurveyResponseItemCollection('${itemObjectId}')/SurveyResponseItemAttachments`, {
+            const fetchAttachments = (visit) => {
+                return new Promise(resolve => {
+                    c4codataapiModel.read(`/SurveyResponseItemCollection('${visit.ItemObjectID}')/SurveyResponseItemAttachments`, {
                         success: function (oData) {
+                            const relatedActivities = weeklyActivity.filter(act => act.CAPA_DOC_UUID === visit.ID);
 
-                            console.log(visitId);
-                            console.log(oData);
-
-                            const relatedActivities = weeklyActivity.filter(act => act.CAPA_DOC_UUID == visitId);
-
-                            console.log(relatedActivities);
                             if (relatedActivities.length > 0) {
-                                let links = oData.results.map(r => {
-
-                                    return {
-                                        mimeType: r.MimeType,
-                                        binary: r.Binary,
-                                        link: r.DocumentLink
-                                    }
-                                });
+                                const links = oData.results.map(r => ({
+                                    mimeType: r.MimeType,
+                                    binary: r.Binary,
+                                    link: r.DocumentLink
+                                }));
 
                                 const original = relatedActivities[0];
                                 const startIndex = weeklyActivity.indexOf(original);
@@ -266,33 +270,33 @@ sap.ui.define([
                                 while (relatedActivities.length < links.length) {
                                     const clone = { ...original };
                                     relatedActivities.push(clone);
-
                                     weeklyActivity.splice(startIndex + relatedActivities.length - 1, 0, clone);
                                 }
 
                                 relatedActivities.forEach((act, index) => {
                                     if (links[index]) {
-                                        if (!act.DocumentLink) {
-                                            act.DocumentLink = `data:${links[index].mimeType};base64,${links[index].binary}` || "";
-                                        }
-
-                                        if (!act.Link) {
-                                            act.Link = links[index].link;
-                                        }
+                                        act.DocumentLink = `data:${links[index].mimeType};base64,${links[index].binary}` || "";
+                                        act.Link = links[index].link || "";
                                     }
                                 });
                             }
                             resolve();
                         },
                         error: function (oError) {
-                            console.error("Error fetching SurveyResponseItemAttachments for ItemObjectID:", itemObjectId, oError);
+                            console.error("Error fetching SurveyResponseItemAttachments for ItemObjectID:", visit.ItemObjectID, oError);
                             resolve();
                         }
                     });
                 });
-            });
+            };
 
-            return Promise.all(promises).then(() => weeklyActivity);
+            const MAX_CONCURRENT = 5;
+            for (let i = 0; i < validVisits.length; i += MAX_CONCURRENT) {
+                const batch = validVisits.slice(i, i + MAX_CONCURRENT);
+                await Promise.all(batch.map(fetchAttachments));
+            }
+
+            return weeklyActivity;
         },
 
         onImagePress: function (oEvent) {

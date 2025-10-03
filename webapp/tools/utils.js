@@ -120,33 +120,30 @@ sap.ui.define([
 
         },
 
-        getWeekEnd: function (weekCalendarYear) {
-            const [weekStr, yearStr] = weekCalendarYear.split("/");
-            const week = parseInt(weekStr, 10);
-            const year = parseInt(yearStr, 10);
+        getWeekEnd: function (dateStr) {
+            const match = dateStr.match(/\/Date\((\d+)\)\//);
+            if (!match) return null;
+            const timestamp = parseInt(match[1], 10);
+            const date = new Date(timestamp);
+            const day = date.getDay();
 
-            // Jan 4 is always in week 1 (ISO)
-            const jan4 = new Date(year, 0, 4);
+            let diff;
+            if (day === 0) {
+                diff = 5;
+            } else if (day <= 5) {
+                diff = 5 - day;
+            } else {
+                diff = 6;
+            }
 
-            // Calculate Monday of that week
-            const day = jan4.getDay(); // 0=Sun...6=Sat
-            const mondayOfWeek1 = new Date(jan4);
-            // Shift backwards to Monday
-            mondayOfWeek1.setDate(jan4.getDate() - ((day + 6) % 7));
-
-            // Monday of target week
-            const targetMonday = new Date(mondayOfWeek1);
-            targetMonday.setDate(mondayOfWeek1.getDate() + (week - 1) * 7);
-
-            // Friday = Monday + 4
-            const friday = new Date(targetMonday);
-            friday.setDate(targetMonday.getDate() + 4 + 7);
+            const weekEnding = new Date(date);
+            weekEnding.setDate(date.getDate() + diff);
 
             const oDateFormat = DateFormat.getDateInstance({
                 pattern: "dd/MM/yyyy"
             });
 
-            return oDateFormat.format(friday);
+            return oDateFormat.format(weekEnding);
 
         },
 
@@ -207,7 +204,7 @@ sap.ui.define([
 
             let xmlSchema = xmlModel.xmlRoot;
             xmlSchema += xmlModel.xmlFormStart;
-            
+
             xmlSchema += xmlModel.xmlBodyMainStart;
 
             xmlSchema += xmlModel.xmlHeaderStart;
