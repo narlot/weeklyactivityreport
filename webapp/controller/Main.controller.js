@@ -19,6 +19,7 @@ sap.ui.define([
 
             // Start: Weekly Activities
             const weeklyActivity = await this._getWeeklyActivity(oModel);
+            console.log(weeklyActivity);
 
             const uniqueWeeks = [...new Set(weeklyActivity.map(item => item.CDOC_REP_YR_WEEK))];
             const war = uniqueWeeks.map(week => ({
@@ -108,8 +109,10 @@ sap.ui.define([
         _getWeeklyActivity: function (oModel) {
             return new Promise((resolve, reject) => {
                 oModel.read("/RPZ3A90C9E0326509CA61E521QueryResults", {
+                    //oModel.read("/RPZ7B32F78E06B31CCE82FB26QueryResults", {
                     urlParameters: {
-                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,CQRE_VAL_ATTACHMENT_UUID,TAPA_DOC_UUID,CDOC_REP_YR_WEEK"
+                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_REP_YR_WEEK"//,CQRE_VAL_ATTACHMENT_UUID"
+                        //"$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_CREATIONDT"
                     },
                     success: function (oData) {
                         resolve(oData.results);
@@ -240,8 +243,13 @@ sap.ui.define([
                 return new Promise((resolve) => {
                     c4codataapiModel.read(`/SurveyResponseItemCollection('${itemObjectId}')/SurveyResponseItemAttachments`, {
                         success: function (oData) {
+
+                            console.log(visitId);
+                            console.log(oData);
+
                             const relatedActivities = weeklyActivity.filter(act => act.CAPA_DOC_UUID == visitId);
 
+                            console.log(relatedActivities);
                             if (relatedActivities.length > 0) {
                                 let links = oData.results.map(r => {
 
@@ -251,10 +259,26 @@ sap.ui.define([
                                         link: r.DocumentLink
                                     }
                                 });
+
+                                const original = relatedActivities[0];
+                                const startIndex = weeklyActivity.indexOf(original);
+
+                                while (relatedActivities.length < links.length) {
+                                    const clone = { ...original };
+                                    relatedActivities.push(clone);
+
+                                    weeklyActivity.splice(startIndex + relatedActivities.length - 1, 0, clone);
+                                }
+
                                 relatedActivities.forEach((act, index) => {
                                     if (links[index]) {
-                                        act.DocumentLink = `data:${links[index].mimeType};base64,${links[index].binary}` || "";
-                                        act.Link = links[index].link;
+                                        if (!act.DocumentLink) {
+                                            act.DocumentLink = `data:${links[index].mimeType};base64,${links[index].binary}` || "";
+                                        }
+
+                                        if (!act.Link) {
+                                            act.Link = links[index].link;
+                                        }
                                     }
                                 });
                             }
