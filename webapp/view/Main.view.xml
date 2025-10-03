@@ -4,7 +4,7 @@
 	xmlns:core="sap.ui.core"
 	xmlns:p="sap.m.plugins"
 	xmlns="sap.m">
-    <Page id="WeeklyActivityID" busy="true">
+    <Page id="WeeklyActivityID">
         <Table id="WeeklyActivityTable"
             inset="false"
             items="{
@@ -68,6 +68,13 @@
                         />
 
                         <ToolbarSpacer />
+
+                        <Button
+                            text="{i18n>getAllData}"
+                            press="_initialize"
+                            type="Emphasized"
+                            icon="sap-icon://database"
+                        />
 
                         <MenuButton
                             id="ExportButtonId"

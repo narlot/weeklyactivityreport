@@ -1,4 +1,5 @@
 // https://port8080-workspaces-ws-uo5t0.us10.applicationstudio.cloud.sap/test/flp.html?sap-ui-xx-viewCache=false#app-preview
+// https://toto-usa-interfaces-non-prod-ikxl2m07.launchpad.cfapps.us10.hana.ondemand.com/7c500db2-f94d-4f54-9924-c7e3aaabbc57.activityweekly.activityweekly-0.0.1/index.html?#?&employeeid=21
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
@@ -10,6 +11,7 @@ sap.ui.define([
     return Controller.extend("activity.weekly.controller.Main", {
 
         async _initialize(employeeid) {
+            this.getView().byId("WeeklyActivityID").setBusy(true);
 
             const oModel = this.getOwnerComponent().getModel();
             oModel.setUseBatch(false);
@@ -18,7 +20,7 @@ sap.ui.define([
             c4codataapiModel.setUseBatch(false);
 
             // Start: Weekly Activities
-            const weeklyActivity = await this._getWeeklyActivity(oModel);
+            const weeklyActivity = await this._getWeeklyActivity(oModel, employeeid);
 
             const uniqueWeeks = [...new Set(weeklyActivity.map(item => utils.getWeekEnd(item.CDOC_CREATIONDT)))];
             const war = uniqueWeeks.map(week => ({
@@ -105,12 +107,19 @@ sap.ui.define([
             }
         },
 
-        _getWeeklyActivity: function (oModel) {
+        _getWeeklyActivity: function (oModel, employeeid) {
+            
+            let urlParameters = {
+                "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_CREATIONDT",
+            };
+            if (typeof employeeid === "string") {
+                const { saturday, friday } = this._getDateThreshold();
+                urlParameters["$filter"] = `CDOC_CREATIONDT ge datetime'${saturday}' and CDOC_CREATIONDT le datetime'${friday}'`;
+            }
+
             return new Promise((resolve, reject) => {
                 oModel.read("/RPZ7B32F78E06B31CCE82FB26QueryResults", {
-                    urlParameters: {
-                        "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_CREATIONDT"
-                    },
+                    urlParameters,
                     success: function (oData) {
                         resolve(oData.results);
                     },
@@ -428,6 +437,24 @@ sap.ui.define([
                 warWeeks.refresh();
             }
 
+        },
+
+        _getDateThreshold: function () {
+            const now = new Date();
+            const day = now.getDay();
+
+            const saturday = new Date(now);
+            saturday.setDate(now.getDate() - ((day + 1) % 7));
+            saturday.setHours(0, 0, 0, 0);
+
+            const friday = new Date(saturday);
+            friday.setDate(saturday.getDate() + 6);
+            friday.setHours(23, 59, 59, 999);
+
+            return {
+                saturday: saturday.toISOString().slice(0, 19),
+                friday: friday.toISOString().slice(0, 19)
+            }
         }
 
     });
