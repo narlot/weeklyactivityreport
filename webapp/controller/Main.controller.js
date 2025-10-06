@@ -19,8 +19,16 @@ sap.ui.define([
             const c4codataapiModel = this.getOwnerComponent().getModel("c4codataapi");
             c4codataapiModel.setUseBatch(false);
 
+            // Start: Get Employees you need to present data for.
+            let employees;
+            if (typeof employeeid === "string") {
+                employees = await this._getEmployees(c4codataapiModel, employeeid);
+                this.getOwnerComponent().employees = employees;
+            }
+            // End: Get Employees you need to present data for.
+
             // Start: Weekly Activities
-            const weeklyActivity = await this._getWeeklyActivity(oModel, employeeid);
+            const weeklyActivity = await this._getWeeklyActivity(oModel, employees);
 
             const uniqueWeeks = [...new Set(weeklyActivity.map(item => utils.getWeekEnd(item.CDOC_CREATIONDT)))];
             const war = uniqueWeeks.map(week => ({
@@ -107,14 +115,26 @@ sap.ui.define([
             }
         },
 
-        _getWeeklyActivity: function (oModel, employeeid) {
-            
+        _getWeeklyActivity: function (oModel, employees) {
+
             let urlParameters = {
                 "$select": "CAPA_DOC_UUID,TAPA_PTY_MAINACTIVITYPTY,Ts1ANsBFEACD52FCDD795,TAPA_PTY_MAINEMPLRESPPTY_N,Ts1ANsDFE1FAA8A417519,CDOC_NOTES,Ts1ANsEE730D1E08E7B3B,TAPA_DOC_UUID,CDOC_CREATIONDT",
             };
-            if (typeof employeeid === "string") {
+
+            if (employees) {
                 const { saturday, friday } = this._getDateThreshold();
                 urlParameters["$filter"] = `CDOC_CREATIONDT ge datetime'${saturday}' and CDOC_CREATIONDT le datetime'${friday}'`;
+            }
+
+            if (Array.isArray(this.getOwnerComponent().employees) && this.getOwnerComponent().employees.length > 0) {
+                const employeeIDs = this.getOwnerComponent().employees.map(id => `CAPA_PTY_MAINEMPLRESPPTY_N eq '${id}'`).join(" or ");
+
+                if (urlParameters["$filter"]) {
+                    urlParameters["$filter"] += `and (${employeeIDs})`;
+                } else {
+                    urlParameters["$filter"] = employeeIDs;
+                }
+
             }
 
             return new Promise((resolve, reject) => {
@@ -455,6 +475,50 @@ sap.ui.define([
                 saturday: saturday.toISOString().slice(0, 19),
                 friday: friday.toISOString().slice(0, 19)
             }
+        },
+
+        _getEmployees: async function (c4codataapiModel, employeeid) {
+            const orgUnitID = await new Promise((resolve, reject) => {
+                c4codataapiModel.read("/EmployeeCollection", {
+                    urlParameters: {
+                        "$filter": `EmployeeID eq '${employeeid}'`,
+                        "$expand": "EmployeeOrganisationalUnitAssignment",
+                        "$select": "EmployeeOrganisationalUnitAssignment/OrgUnitID"
+                    },
+                    success: function (oData) {
+                        if (oData.results?.length > 0) {
+                            const emp = oData.results[0];
+                            const orgUnitID = emp.EmployeeOrganisationalUnitAssignment?.[0]?.OrgUnitID ?? null;
+                            resolve({
+                                employeeOrgUnitID: orgUnitID
+                            });
+                        } else {
+                            reject(`No employee found for ID: ${employeeid}`);
+                        }
+                    },
+                    error: function (oError) {
+                        console.error("Error fetching expanded employee data:", oError);
+                        reject(oError);
+                    }
+                });
+            });
+
+            return new Promise(resolve => {
+                c4codataapiModel.read(`/OrganisationalUnitEmployeeAssignmentCollection`, {
+                    urlParameters: {
+                        "$filter": `OrganisationalUnitID eq '${orgUnitID.employeeOrgUnitID}'`,
+                        "$select": "EmployeeID"
+                    },
+                    success: function (oData) {
+                        resolve(oData.results.map(e => e.EmployeeID));
+                    },
+                    error: function (oError) {
+                        console.error(`Error Employee ID for orgUnit: ${orgUnitID.employeeOrgUnitID}`, oError);
+                        resolve(null);
+                    }
+                });
+            });
+
         }
 
     });
