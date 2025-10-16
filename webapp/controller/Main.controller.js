@@ -488,7 +488,7 @@ sap.ui.define([
                     success: function (oData) {
                         if (oData.results?.length > 0) {
                             const emp = oData.results[0];
-                            const orgUnitID = emp.EmployeeOrganisationalUnitAssignment?.[0]?.OrgUnitID ?? null;
+                            const orgUnitID = emp.EmployeeOrganisationalUnitAssignment.map(oid => oid.OrgUnitID);
                             resolve({
                                 employeeOrgUnitID: orgUnitID
                             });
@@ -503,10 +503,11 @@ sap.ui.define([
                 });
             });
 
+            const filter = orgUnitID.employeeOrgUnitID.map(oid => `OrganisationalUnitID eq '${oid}'`).join(" or ");
             return new Promise(resolve => {
                 c4codataapiModel.read(`/OrganisationalUnitEmployeeAssignmentCollection`, {
                     urlParameters: {
-                        "$filter": `OrganisationalUnitID eq '${orgUnitID.employeeOrgUnitID}'`,
+                        "$filter": filter,
                         "$select": "EmployeeID"
                     },
                     success: function (oData) {
