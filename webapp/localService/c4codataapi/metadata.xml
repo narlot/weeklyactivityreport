@@ -223,6 +223,16 @@
                 <Property Name="CreatedBySSI" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="false" sap:filterable="true" sap:text="CreatedBySSIText" c4c:value-help="AppointmentCreatedBySSICollection"/>
                 <Property Name="CreatedBySSIText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="MandatoryFlag" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true"/>
+                <Property Name="zActConductedAt_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActConductedAt_KUTText" c4c:extension-field="true" c4c:value-help="AppointmentzActConductedAt_KUTCollection"/>
+                <Property Name="zActConductedAt_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActProduct_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="AppointmentzActProduct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDurationOfAct_KUTText" c4c:extension-field="true" c4c:value-help="AppointmentzDurationOfAct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zKPIActNo_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNoOfAttendees_KUT" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zTrainingMat_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="AppointmentzTrainingMat_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWhoProvidedTraining_KUTText" c4c:extension-field="true" c4c:value-help="AppointmentzWhoProvidedTraining_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="AppointmentAttachmentFolder" Relationship="c4codata.Appointment_AppointmentAttachmentFolder" FromRole="Appointment" ToRole="AppointmentAttachmentFolder"/>
                 <NavigationProperty Name="AppointmentBTDReference" Relationship="c4codata.Appointment_AppointmentBTDReference" FromRole="Appointment" ToRole="AppointmentBTDReference"/>
                 <NavigationProperty Name="AppointmentInvolvedParties" Relationship="c4codata.Appointment_AppointmentInvolvedParties" FromRole="Appointment" ToRole="AppointmentInvolvedParties"/>
@@ -387,6 +397,16 @@
                 <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="true" sap:filterable="true"/>
                 <Property Name="CreatedBySSI" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="false" sap:filterable="true" sap:text="CreatedBySSIText" c4c:value-help="EMailCreatedBySSICollection"/>
                 <Property Name="CreatedBySSIText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActConductedAt_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActConductedAt_KUTText" c4c:extension-field="true" c4c:value-help="EMailzActConductedAt_KUTCollection"/>
+                <Property Name="zActConductedAt_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActProduct_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="EMailzActProduct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDurationOfAct_KUTText" c4c:extension-field="true" c4c:value-help="EMailzDurationOfAct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zKPIActNo_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNoOfAttendees_KUT" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zTrainingMat_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="EMailzTrainingMat_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWhoProvidedTraining_KUTText" c4c:extension-field="true" c4c:value-help="EMailzWhoProvidedTraining_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="EMailAttachments" Relationship="c4codata.EMail_EMailAttachments" FromRole="EMail" ToRole="EMailAttachments"/>
                 <NavigationProperty Name="EMailBTDReference" Relationship="c4codata.EMail_EMailBTDReference" FromRole="EMail" ToRole="EMailBTDReference"/>
                 <NavigationProperty Name="EMailCcRecipients" Relationship="c4codata.EMail_EMailCcRecipients" FromRole="EMail" ToRole="EMailCcRecipients"/>
@@ -586,6 +606,16 @@
                 <Property Name="CreatedByUUID" Type="Edm.Guid" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="CreatedBySSI" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="false" sap:filterable="true" sap:text="CreatedBySSIText" c4c:value-help="PhoneCallCreatedBySSICollection"/>
                 <Property Name="CreatedBySSIText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActConductedAt_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActConductedAt_KUTText" c4c:extension-field="true" c4c:value-help="PhoneCallzActConductedAt_KUTCollection"/>
+                <Property Name="zActConductedAt_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActProduct_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="PhoneCallzActProduct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDurationOfAct_KUTText" c4c:extension-field="true" c4c:value-help="PhoneCallzDurationOfAct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zKPIActNo_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNoOfAttendees_KUT" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zTrainingMat_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="PhoneCallzTrainingMat_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWhoProvidedTraining_KUTText" c4c:extension-field="true" c4c:value-help="PhoneCallzWhoProvidedTraining_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="PhoneCallAttachmentFolder" Relationship="c4codata.PhoneCall_PhoneCallAttachmentFolder" FromRole="PhoneCall" ToRole="PhoneCallAttachmentFolder"/>
                 <NavigationProperty Name="PhoneCallBTDReference" Relationship="c4codata.PhoneCall_PhoneCallBTDReference" FromRole="PhoneCall" ToRole="PhoneCallBTDReference"/>
                 <NavigationProperty Name="PhoneCallNotes" Relationship="c4codata.PhoneCall_PhoneCallNotes" FromRole="PhoneCall" ToRole="PhoneCallNotes"/>
@@ -773,6 +803,16 @@
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
                 <Property Name="CreatedBySSI" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="false" sap:filterable="true" sap:text="CreatedBySSIText" c4c:value-help="TasksCreatedBySSICollection"/>
                 <Property Name="CreatedBySSIText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActConductedAt_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActConductedAt_KUTText" c4c:extension-field="true" c4c:value-help="TaskszActConductedAt_KUTCollection"/>
+                <Property Name="zActConductedAt_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActProduct_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="TaskszActProduct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDurationOfAct_KUTText" c4c:extension-field="true" c4c:value-help="TaskszDurationOfAct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zKPIActNo_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNoOfAttendees_KUT" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zTrainingMat_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="TaskszTrainingMat_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWhoProvidedTraining_KUTText" c4c:extension-field="true" c4c:value-help="TaskszWhoProvidedTraining_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="TasksAttachmentFolder" Relationship="c4codata.Tasks_TasksAttachmentFolder" FromRole="Tasks" ToRole="TasksAttachmentFolder"/>
                 <NavigationProperty Name="TasksBTDReference" Relationship="c4codata.Tasks_TasksBTDReference" FromRole="Tasks" ToRole="TasksBTDReference"/>
                 <NavigationProperty Name="TasksInvolvedParties" Relationship="c4codata.Tasks_TasksInvolvedParties" FromRole="Tasks" ToRole="TasksInvolvedParties"/>
@@ -943,6 +983,16 @@
                 <Property Name="CreatedBySSIText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="CreatedBy" Type="Edm.String" Nullable="true" MaxLength="480" FixedLength="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="AccountName" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActConductedAt_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActConductedAt_KUTText" c4c:extension-field="true" c4c:value-help="VisitzActConductedAt_KUTCollection"/>
+                <Property Name="zActConductedAt_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActProduct_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="VisitzActProduct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDurationOfAct_KUTText" c4c:extension-field="true" c4c:value-help="VisitzDurationOfAct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zKPIActNo_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNoOfAttendees_KUT" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zTrainingMat_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="VisitzTrainingMat_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWhoProvidedTraining_KUTText" c4c:extension-field="true" c4c:value-help="VisitzWhoProvidedTraining_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="VisitAttachment" Relationship="c4codata.Visit_VisitAttachment" FromRole="Visit" ToRole="VisitAttachment"/>
                 <NavigationProperty Name="VisitBTDReference" Relationship="c4codata.Visit_VisitBTDReference" FromRole="Visit" ToRole="VisitBTDReference"/>
                 <NavigationProperty Name="VisitParty" Relationship="c4codata.Visit_VisitParty" FromRole="Visit" ToRole="VisitParty"/>
@@ -2962,9 +3012,33 @@
                 <Property Name="LastChangedBy" Type="Edm.String" Nullable="true" MaxLength="480" FixedLength="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ZAnnualRevenue_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZAnnualRevenue_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="ZAnnualRevenue_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="LeadZAnnualRevenue_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="ZAnnualRevenue_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="ZConsumerSelectedShowroom_KUT" Type="Edm.String" Nullable="true" MaxLength="10" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZContent_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZDescription_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZID_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZIndustry_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="ZIndustry_KUTText" c4c:extension-field="true" c4c:value-help="LeadZIndustry_KUTCollection"/>
+                <Property Name="ZIndustry_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="ZMedium_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZNoOfEmployees_KUT" Type="Edm.Decimal" Nullable="true" Precision="8" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZPreferredTimetoVisit_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="ZPreferredTimetoVisit_KUTText" c4c:extension-field="true" c4c:value-help="LeadZPreferredTimetoVisit_KUTCollection"/>
+                <Property Name="ZPreferredTimetoVisit_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="ZProductCategoryofInterest_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="ZProductCategoryofInterest_KUTText" c4c:extension-field="true" c4c:value-help="LeadZProductCategoryofInterest_KUTCollection"/>
+                <Property Name="ZProductCategoryofInterest_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="ZRoleinthePurchaseofProducts_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZSRContactAssigned_KUT" Type="Edm.String" Nullable="true" MaxLength="10" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZSiteForm_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZSource_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="ZType_KUTText" c4c:extension-field="true" c4c:value-help="LeadZType_KUTCollection"/>
+                <Property Name="ZType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="ZWebsite_KUT" Type="Edm.String" Nullable="true" MaxLength="255" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zEmarsysCEUCourses_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zEmarsysCampaignName_KUT" Type="Edm.String" Nullable="true" MaxLength="120" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zEmarsysID_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zIdMigration_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zMessageNotes_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <NavigationProperty Name="LeadAttachmentFolder" Relationship="c4codata.Lead_LeadAttachmentFolder" FromRole="Lead" ToRole="LeadAttachmentFolder"/>
                 <NavigationProperty Name="LeadBusinessTransactionDocumentReference" Relationship="c4codata.Lead_LeadBusinessTransactionDocumentReference" FromRole="Lead" ToRole="LeadBusinessTransactionDocumentReference"/>
                 <NavigationProperty Name="LeadContact" Relationship="c4codata.Lead_LeadContact" FromRole="Lead" ToRole="LeadContact"/>
@@ -3376,6 +3450,7 @@
                 <Property Name="zJobCountry_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zJobCountry_KUTText" c4c:extension-field="true" c4c:value-help="OpportunityzJobCountry_KUTCollection"/>
                 <Property Name="zJobCountry_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zLocation_KUT" Type="Edm.String" Nullable="true" MaxLength="120" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zMarketingAllowance_KUTContent_KUT" Type="Edm.String" Nullable="true" MaxLength="35" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zMarketingSource_KUT" Type="Edm.String" Nullable="true" MaxLength="120" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zPromoName_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zPurposeRAR_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zPurposeRAR_KUTText" c4c:extension-field="true" c4c:value-help="OpportunityzPurposeRAR_KUTCollection"/>
@@ -3383,6 +3458,9 @@
                 <Property Name="zPurpose_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zPurpose_KUTText" c4c:extension-field="true" c4c:value-help="OpportunityzPurpose_KUTCollection"/>
                 <Property Name="zPurpose_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zRegionalMgrCostCenter_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zStillAvailable_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zStillAvailable_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zStillAvailable_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="OpportunityzStillAvailable_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zStillAvailable_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zTotalReimbursed_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zTotalReimbursed_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zTotalReimbursed_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="OpportunityzTotalReimbursed_KUTcurrencyCode_KUTCollection"/>
                 <Property Name="zTotalReimbursed_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
@@ -4007,6 +4085,12 @@
                 <Property Name="ExternalID" Type="Edm.String" Nullable="true" MaxLength="100" FixedLength="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ZDiscontinued_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZSeries_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="ZSeries_KUTText" c4c:extension-field="true" c4c:value-help="ProductZSeries_KUTCollection"/>
+                <Property Name="ZSeries_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zComponents_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zProductModel_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zSRP4_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <NavigationProperty Name="ProductAttachmentFolder" Relationship="c4codata.Product_ProductAttachmentFolder" FromRole="Product" ToRole="ProductAttachmentFolder"/>
                 <NavigationProperty Name="ProductOtherDescriptions" Relationship="c4codata.Product_ProductOtherDescriptions" FromRole="Product" ToRole="ProductOtherDescriptions"/>
                 <NavigationProperty Name="ProductPlantParty" Relationship="c4codata.Product_ProductPlantParty" FromRole="Product" ToRole="ProductPlantParty"/>
@@ -4076,6 +4160,8 @@
                 <Property Name="MinimumOrderQuantity" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="14" sap:creatable="true" sap:updatable="true" sap:filterable="true"/>
                 <Property Name="PricingProductID" Type="Edm.String" Nullable="true" MaxLength="60" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="zIsProductDiscontinuedSalesArea_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zProductDiscontinuedDateSalesArea_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
                 <NavigationProperty Name="Product" Relationship="c4codata.Product_ProductSalesProcessInformation" FromRole="ProductSalesProcessInformation" ToRole="Product"/>
                 <NavigationProperty Name="ProductSalesCustomerPartNumber" Relationship="c4codata.ProductSalesProcessInformation_ProductSalesCustomerPartNumber" FromRole="ProductSalesProcessInformation" ToRole="ProductSalesCustomerPartNumber"/>
                 <NavigationProperty Name="ProductSalesTextCollection" Relationship="c4codata.ProductSalesProcessInformation_ProductSalesTextCollection" FromRole="ProductSalesProcessInformation" ToRole="ProductSalesTextCollection"/>
@@ -4426,19 +4512,19 @@
                 <Property Name="MaintenancePlanID" Type="Edm.String" Nullable="true" MaxLength="35" FixedLength="true" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
                 <Property Name="MaintenancePlanName" Type="Edm.String" Nullable="true" MaxLength="255" FixedLength="true" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
                 <Property Name="Returnneeded_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZReturnorderID_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="Z_ApprovedTicketIDbyTS_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="Z_InvoiceCreation_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="Z_InvoiceCreation_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestZ_InvoiceCreation_KUTCollection"/>
                 <Property Name="Z_InvoiceCreation_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="Z_InvoiceURL_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="Z_PaymentStatus_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="Z_PaymentStatus_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestZ_PaymentStatus_KUTCollection"/>
                 <Property Name="Z_PaymentStatus_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
-                <Property Name="Z_ReturnDate_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
-                <Property Name="Z_ReturnTrackingID_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="Z_ShipmentDate_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
                 <Property Name="Z_ShipmentTrackingID_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
-                <Property Name="Z_StatusOfReturn_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="Z_StatusOfReturn_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestZ_StatusOfReturn_KUTCollection"/>
-                <Property Name="Z_StatusOfReturn_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zHasAttachments_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zPaidInFull_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zReturnForRGA_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zSurveyOptOut_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <NavigationProperty Name="ServiceRequestAttachmentFolder" Relationship="c4codata.ServiceRequest_ServiceRequestAttachmentFolder" FromRole="ServiceRequest" ToRole="ServiceRequestAttachmentFolder"/>
                 <NavigationProperty Name="ServiceRequestBusinessTransactionDocumentReference" Relationship="c4codata.ServiceRequest_ServiceRequestBusinessTransactionDocumentReference" FromRole="ServiceRequest" ToRole="ServiceRequestBusinessTransactionDocumentReference"/>
                 <NavigationProperty Name="ServiceRequestHistoricalVersion" Relationship="c4codata.ServiceRequest_ServiceRequestHistoricalVersion" FromRole="ServiceRequest" ToRole="ServiceRequestHistoricalVersion"/>
@@ -4582,6 +4668,24 @@
                 <Property Name="PlannedEndDateTime" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="zCorrectNetEach_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCorrectNetEach_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCorrectNetEach_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestItemzCorrectNetEach_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zCorrectNetEach_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zExtendedAmount_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zExtendedAmount_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zExtendedAmount_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestItemzExtendedAmount_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zExtendedAmount_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zInvoiceNetEach_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zInvoiceNetEach_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zInvoiceNetEach_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestItemzInvoiceNetEach_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zInvoiceNetEach_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zNetDifference_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNetDifference_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zNetDifference_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestItemzNetDifference_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zNetDifference_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zReturnDate_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zReturnTrackingID_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zShipmentDate_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zShipmentTrackingID_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zStatusOfReturn_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zStatusOfReturn_KUTText" c4c:extension-field="true" c4c:value-help="ServiceRequestItemzStatusOfReturn_KUTCollection"/>
+                <Property Name="zStatusOfReturn_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="ServiceRequest" Relationship="c4codata.ServiceRequest_ServiceRequestItem" FromRole="ServiceRequestItem" ToRole="ServiceRequest"/>
                 <NavigationProperty Name="ServiceRequestItemTextCollection" Relationship="c4codata.ServiceRequestItem_ServiceRequestItemTextCollection" FromRole="ServiceRequestItem" ToRole="ServiceRequestItemTextCollection"/>
             </EntityType>
@@ -4976,6 +5080,36 @@
                 <Property Name="ChangedBy" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ZDiscontinued_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductBrand2_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductBrand3_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductBrand_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductModelNum2_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductModelNum3_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductModelNum_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice2_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice2_KUTCurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCompetitorProductPrice2_KUTCurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="InstallationPointzCompetitorProductPrice2_KUTCurrencyCode_KUTCollection"/>
+                <Property Name="zCompetitorProductPrice2_KUTCurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zCompetitorProductPrice3_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice3_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCompetitorProductPrice3_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="InstallationPointzCompetitorProductPrice3_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zCompetitorProductPrice3_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zCompetitorProductPrice_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCompetitorProductPrice_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="InstallationPointzCompetitorProductPrice_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zCompetitorProductPrice_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zDatePlacedonDisplay_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zDateTakenOffDisplay_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zDateconfirmedonDisplay_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zDisplayName_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zDisplayStatus_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDisplayStatus_KUTText" c4c:extension-field="true" c4c:value-help="InstallationPointzDisplayStatus_KUTCollection"/>
+                <Property Name="zDisplayStatus_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zDisplayType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDisplayType_KUTText" c4c:extension-field="true" c4c:value-help="InstallationPointzDisplayType_KUTCollection"/>
+                <Property Name="zDisplayType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zProductSKU_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zProductStyle_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zProductStyle_KUTText" c4c:extension-field="true" c4c:value-help="InstallationPointzProductStyle_KUTCollection"/>
+                <Property Name="zProductStyle_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zProductType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zProductType_KUTText" c4c:extension-field="true" c4c:value-help="InstallationPointzProductType_KUTCollection"/>
+                <Property Name="zProductType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zSRP4_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <NavigationProperty Name="FunctionalLocationDescription" Relationship="c4codata.InstallationPoint_FunctionalLocationDescription" FromRole="InstallationPoint" ToRole="FunctionalLocationDescription"/>
                 <NavigationProperty Name="InstallationPointAttachmentFolder" Relationship="c4codata.InstallationPoint_InstallationPointAttachmentFolder" FromRole="InstallationPoint" ToRole="InstallationPointAttachmentFolder"/>
                 <NavigationProperty Name="InstallationPointParty" Relationship="c4codata.InstallationPoint_InstallationPointParty" FromRole="InstallationPoint" ToRole="InstallationPointParty"/>
@@ -5871,6 +6005,7 @@
                 <Property Name="BillingStatusCodeText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="zActivityDescription_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zActivityType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActivityType_KUTText" c4c:extension-field="true" c4c:value-help="CustomerOrderzActivityType_KUTCollection"/>
                 <Property Name="zActivityType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zAttachedDocuments_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
@@ -5879,6 +6014,8 @@
                 <Property Name="zCheckNumber_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zCostCenter_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zCountOfLines_KUT" Type="Edm.Int32" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCustomerType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCustomerType_KUTText" c4c:extension-field="true" c4c:value-help="CustomerOrderzCustomerType_KUTCollection"/>
+                <Property Name="zCustomerType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zDateIssued_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
                 <Property Name="zDateSenttoAccounting_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
                 <Property Name="zDateofFinalApproval_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
@@ -5909,7 +6046,11 @@
                 <Property Name="zPublishtoForecast_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zPurposeRAR_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zPurposeRAR_KUTText" c4c:extension-field="true" c4c:value-help="CustomerOrderzPurposeRAR_KUTCollection"/>
                 <Property Name="zPurposeRAR_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zPurposeSSR_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zPurposeSSR_KUTText" c4c:extension-field="true" c4c:value-help="CustomerOrderzPurposeSSR_KUTCollection"/>
+                <Property Name="zPurposeSSR_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zReasonForSSR_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zReasonforProcessingRejection_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zReasonforSSRRejection_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zRecordLocked_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zRequestedPaymentType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zRequestedPaymentType_KUTText" c4c:extension-field="true" c4c:value-help="CustomerOrderzRequestedPaymentType_KUTCollection"/>
                 <Property Name="zRequestedPaymentType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
@@ -7087,6 +7228,7 @@
                 <Property Name="CustomerGroupCodeText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="zActivityDescription_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zActivityType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActivityType_KUTText" c4c:extension-field="true" c4c:value-help="SalesQuotezActivityType_KUTCollection"/>
                 <Property Name="zActivityType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zAttachedDocuments_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
@@ -7095,6 +7237,8 @@
                 <Property Name="zCheckNumber_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zCostCenter_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zCountOfLines_KUT" Type="Edm.Int32" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCustomerType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCustomerType_KUTText" c4c:extension-field="true" c4c:value-help="SalesQuotezCustomerType_KUTCollection"/>
+                <Property Name="zCustomerType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="zDateIssued_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
                 <Property Name="zDateSenttoAccounting_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
                 <Property Name="zDateofFinalApproval_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
@@ -7125,7 +7269,11 @@
                 <Property Name="zPublishtoForecast_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zPurposeRAR_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zPurposeRAR_KUTText" c4c:extension-field="true" c4c:value-help="SalesQuotezPurposeRAR_KUTCollection"/>
                 <Property Name="zPurposeRAR_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zPurposeSSR_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zPurposeSSR_KUTText" c4c:extension-field="true" c4c:value-help="SalesQuotezPurposeSSR_KUTCollection"/>
+                <Property Name="zPurposeSSR_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zReasonForSSR_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zReasonforProcessingRejection_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zReasonforSSRRejection_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zRecordLocked_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="zRequestedPaymentType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zRequestedPaymentType_KUTText" c4c:extension-field="true" c4c:value-help="SalesQuotezRequestedPaymentType_KUTCollection"/>
                 <Property Name="zRequestedPaymentType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
@@ -8471,6 +8619,11 @@
                 <Property Name="LastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ZDiscontinued_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="ZSeries_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" c4c:value-help="CompetitorProductZSeries_KUTCollection"/>
+                <Property Name="zComponents_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zProductModel_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zSRP4_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <NavigationProperty Name="CompetitorProductAttachmentFolder" Relationship="c4codata.CompetitorProduct_CompetitorProductAttachmentFolder" FromRole="CompetitorProduct" ToRole="CompetitorProductAttachmentFolder"/>
                 <NavigationProperty Name="CompetitorProductTextCollection" Relationship="c4codata.CompetitorProduct_CompetitorProductTextCollection" FromRole="CompetitorProduct" ToRole="CompetitorProductTextCollection"/>
             </EntityType>
@@ -9635,6 +9788,7 @@
                 <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="ETag" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" ConcurrencyMode="Fixed" sap:creatable="false" sap:updatable="false" sap:filterable="false"/>
+                <Property Name="ZDiscontinued_KUT" Type="Edm.Boolean" Nullable="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
                 <Property Name="Z_CauseLarge_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="Z_CauseLarge_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductZ_CauseLarge_KUTCollection"/>
                 <Property Name="Z_CauseLarge_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="Z_CauseSmall_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="Z_CauseSmall_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductZ_CauseSmall_KUTCollection"/>
@@ -9645,6 +9799,39 @@
                 <Property Name="Z_PhenomenonCode_General_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <Property Name="Z_PhenomenonCode_Washlet_Neorest_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="Z_PhenomenonCode_Washlet_Neorest_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductZ_PhenomenonCode_Washlet_Neorest_KUTCollection"/>
                 <Property Name="Z_PhenomenonCode_Washlet_Neorest_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zCompetitorProductBrand2_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductBrand3_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductBrand_KUT" Type="Edm.String" Nullable="true" FixedLength="false" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductModelNum2_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductModelNum3_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductModelNum_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice2_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice2_KUTCurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCompetitorProductPrice2_KUTCurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzCompetitorProductPrice2_KUTCurrencyCode_KUTCollection"/>
+                <Property Name="zCompetitorProductPrice2_KUTCurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zCompetitorProductPrice3_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice3_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCompetitorProductPrice3_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzCompetitorProductPrice3_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zCompetitorProductPrice3_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zCompetitorProductPrice_KUTContent_KUT" Type="Edm.Decimal" Nullable="true" Precision="28" Scale="6" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zCompetitorProductPrice_KUTcurrencyCode_KUT" Type="Edm.String" Nullable="true" MaxLength="3" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zCompetitorProductPrice_KUTcurrencyCode_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzCompetitorProductPrice_KUTcurrencyCode_KUTCollection"/>
+                <Property Name="zCompetitorProductPrice_KUTcurrencyCode_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zDatePlacedonDisplay_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zDateTakenOffDisplay_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zDateconfirmedonDisplay_KUT" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" sap:display-format="Date"/>
+                <Property Name="zDisplayName_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zDisplayStatus_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDisplayStatus_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzDisplayStatus_KUTCollection"/>
+                <Property Name="zDisplayStatus_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zDisplayType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDisplayType_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzDisplayType_KUTCollection"/>
+                <Property Name="zDisplayType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zProductSKU_KUT" Type="Edm.String" Nullable="true" MaxLength="80" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zProductStyle_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zProductStyle_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzProductStyle_KUTCollection"/>
+                <Property Name="zProductStyle_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zProductType_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zProductType_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzProductType_KUTCollection"/>
+                <Property Name="zProductType_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zSRP4_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zWarrantyPeriod_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWarrantyPeriod_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzWarrantyPeriod_KUTCollection"/>
+                <Property Name="zWarrantyPeriod_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zWarrantyStatus_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWarrantyStatus_KUTText" c4c:extension-field="true" c4c:value-help="RegisteredProductzWarrantyStatus_KUTCollection"/>
+                <Property Name="zWarrantyStatus_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="RegisteredProductAttachmentFolder" Relationship="c4codata.RegisteredProduct_RegisteredProductAttachmentFolder" FromRole="RegisteredProduct" ToRole="RegisteredProductAttachmentFolder"/>
                 <NavigationProperty Name="RegisteredProductDescription" Relationship="c4codata.RegisteredProduct_RegisteredProductDescription" FromRole="RegisteredProduct" ToRole="RegisteredProductDescription"/>
                 <NavigationProperty Name="RegisteredProductPartyInformation" Relationship="c4codata.RegisteredProduct_RegisteredProductPartyInformation" FromRole="RegisteredProduct" ToRole="RegisteredProductPartyInformation"/>
@@ -10640,6 +10827,16 @@
                 <Property Name="ChatMainPartyID" Type="Edm.String" Nullable="true" MaxLength="60" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true"/>
                 <Property Name="ChatMainEmailURI" Type="Edm.String" Nullable="true" MaxLength="254" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActConductedAt_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zActConductedAt_KUTText" c4c:extension-field="true" c4c:value-help="ChatActivityzActConductedAt_KUTCollection"/>
+                <Property Name="zActConductedAt_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActProduct_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="ChatActivityzActProduct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zDurationOfAct_KUTText" c4c:extension-field="true" c4c:value-help="ChatActivityzDurationOfAct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zKPIActNo_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNoOfAttendees_KUT" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zTrainingMat_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="ChatActivityzTrainingMat_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" sap:text="zWhoProvidedTraining_KUTText" c4c:extension-field="true" c4c:value-help="ChatActivityzWhoProvidedTraining_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUTText" Type="Edm.String" Nullable="true" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
                 <NavigationProperty Name="ChatActivityAttachment" Relationship="c4codata.ChatActivity_ChatActivityAttachment" FromRole="ChatActivity" ToRole="ChatActivityAttachment"/>
                 <NavigationProperty Name="ChatActivityBTDReference" Relationship="c4codata.ChatActivity_ChatActivityBTDReference" FromRole="ChatActivity" ToRole="ChatActivityBTDReference"/>
                 <NavigationProperty Name="ChatActivityParties" Relationship="c4codata.ChatActivity_ChatActivityParties" FromRole="ChatActivity" ToRole="ChatActivityParties"/>
@@ -11571,6 +11768,13 @@
                 <Property Name="InitiatorCode" Type="Edm.String" Nullable="true" MaxLength="1" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:value-help="ActivityInitiatorCodeCollection"/>
                 <Property Name="CreationDate" Type="Edm.DateTime" Nullable="true" Precision="0" sap:creatable="false" sap:updatable="false" sap:filterable="true" sap:display-format="Date"/>
                 <Property Name="EntityLastChangedOn" Type="Edm.DateTimeOffset" Nullable="true" Precision="7" sap:creatable="false" sap:updatable="false" sap:filterable="true"/>
+                <Property Name="zActConductedAt_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" c4c:value-help="MemoActivityzActConductedAt_KUTCollection"/>
+                <Property Name="zActProduct_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="MemoActivityzActProduct_KUTCollection"/>
+                <Property Name="zDurationOfAct_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" c4c:value-help="MemoActivityzDurationOfAct_KUTCollection"/>
+                <Property Name="zKPIActNo_KUT" Type="Edm.String" Nullable="true" MaxLength="40" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zNoOfAttendees_KUT" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true"/>
+                <Property Name="zTrainingMat_KUT" Type="Edm.String" Nullable="true" MaxLength="256" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:multi-valued="true" c4c:extension-field="true" c4c:value-help="MemoActivityzTrainingMat_KUTCollection"/>
+                <Property Name="zWhoProvidedTraining_KUT" Type="Edm.String" Nullable="true" MaxLength="30" FixedLength="true" sap:creatable="true" sap:updatable="true" sap:filterable="true" c4c:extension-field="true" c4c:value-help="MemoActivityzWhoProvidedTraining_KUTCollection"/>
                 <NavigationProperty Name="ActivityAttachmentFolder" Relationship="c4codata.Activity_ActivityAttachmentFolder" FromRole="Activity" ToRole="ActivityAttachmentFolder"/>
                 <NavigationProperty Name="ActivityBusinessTransactionDocumentReference" Relationship="c4codata.Activity_ActivityBusinessTransactionDocumentReference" FromRole="Activity" ToRole="ActivityBusinessTransactionDocumentReference"/>
                 <NavigationProperty Name="ActivityParty" Relationship="c4codata.Activity_ActivityParty" FromRole="Activity" ToRole="ActivityParty"/>
@@ -13612,6 +13816,11 @@
                 <EntitySet Name="AppointmentTextCollectionLanguageCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="AppointmentTextCollectionTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="AppointmentVisitTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="AppointmentzActConductedAt_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="AppointmentzActProduct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="AppointmentzDurationOfAct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="AppointmentzTrainingMat_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="AppointmentzWhoProvidedTraining_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="BranchingConditionsCollection" EntityType="c4codata.BranchingConditions" sap:creatable="true" sap:updatable="true" sap:deletable="false"/>
                 <EntitySet Name="BusinessAttributeAssignmentCollection" EntityType="c4codata.BusinessAttributeAssignment" sap:creatable="true" sap:updatable="false" sap:deletable="true"/>
                 <EntitySet Name="BusinessAttributeAssignmentItemBusinessAttributeSetBusinessObjectTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -13730,6 +13939,11 @@
                 <EntitySet Name="ChatActivityTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ChatActivityVisitTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ChatActivityVisitWorkItemGenerationCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ChatActivityzActConductedAt_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ChatActivityzActProduct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ChatActivityzDurationOfAct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ChatActivityzTrainingMat_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ChatActivityzWhoProvidedTraining_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ChatTextCollectionLanguageCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ChatTextCollectionTypeCodeCollection" EntityType="c4codata.ContextualCodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CodTimeEntryBusinessTransactionDocumentTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -13781,6 +13995,7 @@
                 <EntitySet Name="CompetitorProductTextCollectionCollection" EntityType="c4codata.CompetitorProductTextCollection" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="CompetitorProductTextCollectionLanguageCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CompetitorProductTextCollectionTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="CompetitorProductZSeries_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CompetitorRegionCodeCollection" EntityType="c4codata.ContextualCodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CompetitorSalesOrganisationCollection" EntityType="c4codata.CompetitorSalesOrganisation" sap:creatable="true" sap:updatable="false" sap:deletable="true"/>
                 <EntitySet Name="CompetitorStatusCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -14160,12 +14375,14 @@
                 <EntitySet Name="CustomerOrdertimeZoneCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzActivityType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzCallatSite_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="CustomerOrderzCustomerType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzECADecision_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzJobCountry_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzJobState_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzJobType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzMockUp_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzPurposeRAR_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="CustomerOrderzPurposeSSR_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzRequestedPaymentType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzSpecifiedManufacturer_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="CustomerOrderzTotalCostAll_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -14214,6 +14431,11 @@
                 <EntitySet Name="EMailToRecipientsCollection" EntityType="c4codata.EMailToRecipients" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="EMailToRecipientsNameLanguageCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="EMailTransmissionStatusCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="EMailzActConductedAt_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="EMailzActProduct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="EMailzDurationOfAct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="EMailzTrainingMat_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="EMailzWhoProvidedTraining_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ElementRatingCollection" EntityType="c4codata.ElementRating" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="ElementResponseOptionCollection" EntityType="c4codata.ElementResponseOption" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="EmployeeAcademicTitleCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -14360,6 +14582,13 @@
                 <EntitySet Name="InstallationPointTextCollectionTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="InstallationPointTimeZoneCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="InstallationPointTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="InstallationPointzCompetitorProductPrice2_KUTCurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="InstallationPointzCompetitorProductPrice3_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="InstallationPointzCompetitorProductPrice_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="InstallationPointzDisplayStatus_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="InstallationPointzDisplayType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="InstallationPointzProductStyle_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="InstallationPointzProductType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="InstalledBaseAddressInformationTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="InstalledBaseCollection" EntityType="c4codata.InstalledBase" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="InstalledBaseCompetitorProductCollection" EntityType="c4codata.InstalledBaseCompetitorProduct" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
@@ -14487,6 +14716,11 @@
                 <EntitySet Name="LeadTextCollectionLanguageCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="LeadTextCollectionTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="LeadUserStatusCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="LeadZAnnualRevenue_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="LeadZIndustry_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="LeadZPreferredTimetoVisit_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="LeadZProductCategoryofInterest_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="LeadZType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="LeanInvoiceAttachmentFolderCategoryCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="LeanInvoiceAttachmentFolderCollection" EntityType="c4codata.LeanInvoiceAttachmentFolder" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="LeanInvoiceAttachmentFolderTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -14525,6 +14759,11 @@
                 <EntitySet Name="MemoActivityBusinessTransactionDocumentReferenceCollection" EntityType="c4codata.MemoActivityBusinessTransactionDocumentReference" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="MemoActivityPartyCollection" EntityType="c4codata.MemoActivityParty" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="MemoActivityTextCollection" EntityType="c4codata.MemoActivityText" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+                <EntitySet Name="MemoActivityzActConductedAt_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="MemoActivityzActProduct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="MemoActivityzDurationOfAct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="MemoActivityzTrainingMat_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="MemoActivityzWhoProvidedTraining_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ObjectIdentifierMappingCollection" EntityType="c4codata.ObjectIdentifierMapping" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="ObjectIdentifierMappingRemoteIdentifierDefiningSchemeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="OpportunityAccountTeamPartyDeprecatedCollection" EntityType="c4codata.OpportunityAccountTeamPartyDeprecated" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
@@ -14636,6 +14875,7 @@
                 <EntitySet Name="OpportunityzJobCountry_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="OpportunityzPurposeRAR_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="OpportunityzPurpose_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="OpportunityzStillAvailable_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="OpportunityzTotalReimbursed_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="OpportunityzTotalRequested_KUTCurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="OrganisationalUnitCollection" EntityType="c4codata.OrganisationalUnit" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
@@ -14764,6 +15004,11 @@
                 <EntitySet Name="PhoneCallStatusCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="PhoneCallWorklistItemActivityWorklistItemTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="PhoneCallWorklistItemCollection" EntityType="c4codata.PhoneCallWorklistItem" sap:creatable="true" sap:updatable="false" sap:deletable="true"/>
+                <EntitySet Name="PhoneCallzActConductedAt_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="PhoneCallzActProduct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="PhoneCallzDurationOfAct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="PhoneCallzTrainingMat_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="PhoneCallzWhoProvidedTraining_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="PoEAttachmentsCategoryCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="PoEAttachmentsCollection" EntityType="c4codata.PoEAttachments" sap:creatable="true" sap:updatable="false" sap:deletable="true"/>
                 <EntitySet Name="PoEAttachmentsTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -14830,6 +15075,7 @@
                 <EntitySet Name="ProductTextCollectionLanguageCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ProductTextCollectionTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ProductUsageCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ProductZSeries_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ProductlGlobalTradeItemNumberCollection" EntityType="c4codata.ProductlGlobalTradeItemNumber" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="ProductlGlobalTradeItemNumberGTINUnitOfMeasureCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="PromotionAccountTypeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -14939,6 +15185,15 @@
                 <EntitySet Name="RegisteredProductZ_PartsCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="RegisteredProductZ_PhenomenonCode_General_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="RegisteredProductZ_PhenomenonCode_Washlet_Neorest_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzCompetitorProductPrice2_KUTCurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzCompetitorProductPrice3_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzCompetitorProductPrice_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzDisplayStatus_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzDisplayType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzProductStyle_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzProductType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzWarrantyPeriod_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="RegisteredProductzWarrantyStatus_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ResponseAttachmentHeaderCollection" EntityType="c4codata.ResponseAttachmentHeader" sap:creatable="true" sap:updatable="false" sap:deletable="true"/>
                 <EntitySet Name="ResponseAttachmentsCategoryCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ResponseAttachmentsCollection" EntityType="c4codata.ResponseAttachments" sap:creatable="true" sap:updatable="false" sap:deletable="true"/>
@@ -15125,12 +15380,14 @@
                 <EntitySet Name="SalesQuotetimeZoneCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezActivityType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezCallatSite_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="SalesQuotezCustomerType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezECADecision_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezJobCountry_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezJobState_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezJobType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezMockUp_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezPurposeRAR_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="SalesQuotezPurposeSSR_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezRequestedPaymentType_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezSpecifiedManufacturer_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SalesQuotezTotalCostAll_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -15240,6 +15497,11 @@
                 <EntitySet Name="ServiceRequestItemTextCollectionTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ServiceRequestItemUserServiceTransactionProcessingTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ServiceRequestItemWarrantyGoodwillCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ServiceRequestItemzCorrectNetEach_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ServiceRequestItemzExtendedAmount_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ServiceRequestItemzInvoiceNetEach_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ServiceRequestItemzNetDifference_KUTcurrencyCode_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="ServiceRequestItemzStatusOfReturn_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ServiceRequestLocationAddressPOBoxDeviatingCountryCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ServiceRequestLocationAddressPOBoxDeviatingRegionCodeCollection" EntityType="c4codata.ContextualCodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ServiceRequestLocationAddressTimeZoneCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -15299,7 +15561,6 @@
                 <EntitySet Name="ServiceRequestWarrantyStartdatetimeZoneCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ServiceRequestZ_InvoiceCreation_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="ServiceRequestZ_PaymentStatus_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
-                <EntitySet Name="ServiceRequestZ_StatusOfReturn_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SignatureAttachmentCategoryCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="SignatureAttachmentCollection" EntityType="c4codata.SignatureAttachment" sap:creatable="true" sap:updatable="false" sap:deletable="true"/>
                 <EntitySet Name="SignatureAttachmentTypeCodeCollection" EntityType="c4codata.ContextualCodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -15445,6 +15706,11 @@
                 <EntitySet Name="TasksTextCollectionCollection" EntityType="c4codata.TasksTextCollection" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="TasksTextCollectionLanguageCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="TasksTextCollectionTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="TaskszActConductedAt_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="TaskszActProduct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="TaskszDurationOfAct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="TaskszTrainingMat_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="TaskszWhoProvidedTraining_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="TimeEntryBusinessTransactionDocumentTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="TimeEntryCollection" EntityType="c4codata.TimeEntry" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
                 <EntitySet Name="TimeEntryInformationLifeCycleStatusCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
@@ -15492,6 +15758,11 @@
                 <EntitySet Name="VisitVisitTypeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="VisitWorklistItemActivityWorklistItemTypeCodeCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <EntitySet Name="VisitWorklistItemCollection" EntityType="c4codata.VisitWorklistItem" sap:creatable="false" sap:updatable="false" sap:deletable="true"/>
+                <EntitySet Name="VisitzActConductedAt_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="VisitzActProduct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="VisitzDurationOfAct_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="VisitzTrainingMat_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
+                <EntitySet Name="VisitzWhoProvidedTraining_KUTCollection" EntityType="c4codata.CodeList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:semantics="fixed-values"/>
                 <AssociationSet Name="ActivityCollection_MemoActivityAttachmentFolderCollection" Association="c4codata.Activity_ActivityAttachmentFolder" sap:creatable="true" sap:updatable="false" sap:deletable="false">
                     <End EntitySet="ActivityCollection" Role="Activity"/>
                     <End EntitySet="MemoActivityAttachmentFolderCollection" Role="ActivityAttachmentFolder"/>

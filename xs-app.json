@@ -15,18 +15,18 @@
       "destination": "ui5"
     },
     {
-      "source": "^/c4c/(.*)$",
-      "target": "$1",
+      "source": "^/sap/c4c/odata/(.*)$",
+      "target": "/sap/c4c/odata/$1",
       "authenticationType": "xsuaa",
       "destination": "c4c",
       "csrfProtection": false
     },
     {
-      "source": "^/c4codataapi/(.*)$",
-      "target": "$1",
-      "authenticationType": "xsuaa",
-      "destination": "c4c",
-      "csrfProtection": false
+      "source": "^/v1/(.*)$",
+      "target": "/v1/$1",
+      "authenticationType": "none",
+      "csrfProtection": false,
+      "destination": "ADS_SRV"
     },
     {
       "source": "^(.*)$",
