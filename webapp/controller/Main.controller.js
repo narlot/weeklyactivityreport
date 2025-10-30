@@ -22,7 +22,7 @@ sap.ui.define([
             // Start: Get Employees you need to present data for.
             let employees;
             if (typeof employeeid === "string") {
-                employees = await this._getEmployees(c4codataapiModel, employeeid);
+                employees = await this._getEmployees(c4codataapiModel, employeeid, this);
                 this.getOwnerComponent().employees = employees;
             }
             // End: Get Employees you need to present data for.
@@ -477,7 +477,9 @@ sap.ui.define([
             }
         },
 
-        _getEmployees: async function (c4codataapiModel, employeeid) {
+        _getEmployees: async function (c4codataapiModel, employeeid, that) {
+            const i18n = that.getOwnerComponent().getModel("i18n").getResourceBundle();
+            
             const orgUnitID = await new Promise((resolve, reject) => {
                 c4codataapiModel.read("/EmployeeCollection", {
                     urlParameters: {
@@ -493,12 +495,22 @@ sap.ui.define([
                                 employeeOrgUnitID: orgUnitID
                             });
                         } else {
-                            reject(`No employee found for ID: ${employeeid}`);
+                            that.getView().byId("WeeklyActivityID").setBusy(false);
+                            that.getView().byId("BtnAllDataID").setEnabled(false);
+                            MessageToast.show(i18n.getText("noUserIdentified"));
+                            setTimeout(() => {
+                                reject(`No employee found for ID: ${employeeid}`);
+                            }, 3000);
                         }
                     },
                     error: function (oError) {
                         console.error("Error fetching expanded employee data:", oError);
-                        reject(oError);
+                        that.getView().byId("WeeklyActivityID").setBusy(false);
+                        that.getView().byId("BtnAllDataID").setEnabled(false);
+                        MessageToast.show(i18n.getText("noUserIdentified"));
+                        setTimeout(() => {
+                            reject(oError);
+                        }, 3000);
                     }
                 });
             });

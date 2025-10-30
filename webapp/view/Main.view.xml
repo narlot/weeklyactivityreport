@@ -70,6 +70,7 @@
                         <ToolbarSpacer />
 
                         <Button
+                            id="BtnAllDataID"
                             text="{i18n>getAllData}"
                             press="_initialize"
                             type="Emphasized"
