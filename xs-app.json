@@ -17,7 +17,7 @@
     {
       "source": "^/sap/c4c/odata/(.*)$",
       "target": "/sap/c4c/odata/$1",
-      "authenticationType": "xsuaa",
+      "authenticationType": "none",
       "destination": "c4c",
       "csrfProtection": false
     },
@@ -32,7 +32,7 @@
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",
-      "authenticationType": "xsuaa"
+      "authenticationType": "none"
     }
   ]
 }
